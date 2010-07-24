@@ -2,7 +2,8 @@ grammar Pathology.XPath
   
   location_path       <- location_step+ <Pathology.LocationPath>
   
-  location_step       <- axis test:node_test? predicate:node_predicate? <Pathology.LocationStep>
+  location_step       <- axis test:node_test? predicate:node_predicate?
+                         <Pathology.LocationStep>
   
   axis                <- "/" axis_identifier <Pathology.Axis>
   
@@ -18,13 +19,21 @@ grammar Pathology.XPath
   
   node_predicate      <- "[" expression "]"
   
-  expression          <- comparison / atom
+  expression          <- or_expression / and_expression / comparison / atom
   
-  comparison          <- left:atom comparator right:(comparison / atom) <Pathology.Comparison>
+  or_expression       <- left:and_expression "or" right:or_expression <Pathology.Or>
+                       / and_expression
+  
+  and_expression      <- left:comparison "and" right:and_expression <Pathology.And>
+                       / comparison
+  
+  comparison          <- left:atom comparator right:comparison <Pathology.Comparison>
+                       / atom
   
   comparator          <- "!=" / "="
   
-  atom                <- space expression:("(" in_parens:expression ")" / value) space <Pathology.Atom>
+  atom                <- space expression:("(" in_parens:expression ")" / value) space
+                         <Pathology.Atom>
   
   value               <- function_call / attribute / string
   
@@ -36,7 +45,8 @@ grammar Pathology.XPath
   
   attribute           <- "@" node_name <Pathology.Attribute>
   
-  string              <- ("'" ("\\" . / [^'])* "'" / "\"" ("\\" . / [^"])* "\"") <Pathology.String>
+  string              <- ("'" ("\\" . / [^'])* "'" / "\"" ("\\" . / [^"])* "\"")
+                         <Pathology.String>
   
   space               <- " "*
 

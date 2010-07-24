@@ -13,18 +13,6 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() {
     })
   })
   
-  describe("with an equality comparison", function() {
-    it("matches the element with the required ID", function() {
-      assertNodesMatch( ["section-div"], "//div[@id='section-div']" )
-    })
-  })
-  
-  describe("with an inequality comparison", function() {
-    it("matches the element without the required ID", function() {
-      assertNodesMatch( ["gender-male"], '//input[ @id != "gender-female" ]' )
-    })
-  })
-  
   describe("text()", function() {
     it("filters by node text", function() {
       assertNodesMatch( ["label-male"], "//label[text() = 'Male']" )

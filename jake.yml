@@ -17,6 +17,7 @@ packages:
       - pathology
       - pathology/xpath_result
       - pathology/xpath
+      - pathology/nodes/and
       - pathology/nodes/atom
       - pathology/nodes/attribute
       - pathology/nodes/axis
@@ -25,5 +26,6 @@ packages:
       - pathology/nodes/location_path
       - pathology/nodes/location_step
       - pathology/nodes/node_test
+      - pathology/nodes/or
       - pathology/nodes/string
 

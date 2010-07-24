@@ -566,17 +566,179 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
             return cached;
         }
         var index1 = this._offset;
-        address0 = this.__consume__comparison();
+        address0 = this.__consume__or_expression();
         if (address0) {
         } else {
             this._offset = index1;
-            address0 = this.__consume__atom();
+            address0 = this.__consume__and_expression();
+            if (address0) {
+            } else {
+                this._offset = index1;
+                address0 = this.__consume__comparison();
+                if (address0) {
+                } else {
+                    this._offset = index1;
+                    address0 = this.__consume__atom();
+                    if (address0) {
+                    } else {
+                        this._offset = index1;
+                    }
+                }
+            }
+        }
+        return this._nodeCache.expression[index0] = address0;
+    },
+    __consume__or_expression: function(input) {
+        var address0 = null;
+        var index0 = this._offset;
+        this._nodeCache.or_expression = this._nodeCache.or_expression || {};
+        var cached = this._nodeCache.or_expression[index0];
+        if (cached) {
+            this._offset += cached.textValue.length;
+            return cached;
+        }
+        var index1 = this._offset;
+        var index2 = this._offset;
+        var elements0 = [];
+        var labelled0 = {};
+        var text0 = "";
+        var address1 = null;
+        address1 = this.__consume__and_expression();
+        if (address1) {
+            elements0.push(address1);
+            text0 += address1.textValue;
+            labelled0.left = address1;
+            var address2 = null;
+            if (this._input.substring(this._offset, this._offset + 2) === "or") {
+                var klass0 = this.klass.SyntaxNode;
+                address2 = new klass0("or", this._offset, []);
+                this._offset += 2;
+            } else {
+                address2 = null;
+            }
+            if (address2) {
+                elements0.push(address2);
+                text0 += address2.textValue;
+                var address3 = null;
+                address3 = this.__consume__or_expression();
+                if (address3) {
+                    elements0.push(address3);
+                    text0 += address3.textValue;
+                    labelled0.right = address3;
+                } else {
+                    elements0 = null;
+                    this._offset = index2;
+                }
+            } else {
+                elements0 = null;
+                this._offset = index2;
+            }
+        } else {
+            elements0 = null;
+            this._offset = index2;
+        }
+        if (elements0) {
+            this._offset = index2;
+            var klass1 = null;
+            if (Pathology.Or instanceof Function) {
+                klass1 = Pathology.Or;
+            } else {
+                klass1 = this.klass.SyntaxNode;
+            }
+            address0 = new klass1(text0, this._offset, elements0, labelled0);
+            if (!(Pathology.Or instanceof Function)) {
+                address0.extend(Pathology.Or);
+            }
+            this._offset += text0.length;
+        } else {
+            address0 = null;
+        }
+        if (address0) {
+        } else {
+            this._offset = index1;
+            address0 = this.__consume__and_expression();
             if (address0) {
             } else {
                 this._offset = index1;
             }
         }
-        return this._nodeCache.expression[index0] = address0;
+        return this._nodeCache.or_expression[index0] = address0;
+    },
+    __consume__and_expression: function(input) {
+        var address0 = null;
+        var index0 = this._offset;
+        this._nodeCache.and_expression = this._nodeCache.and_expression || {};
+        var cached = this._nodeCache.and_expression[index0];
+        if (cached) {
+            this._offset += cached.textValue.length;
+            return cached;
+        }
+        var index1 = this._offset;
+        var index2 = this._offset;
+        var elements0 = [];
+        var labelled0 = {};
+        var text0 = "";
+        var address1 = null;
+        address1 = this.__consume__comparison();
+        if (address1) {
+            elements0.push(address1);
+            text0 += address1.textValue;
+            labelled0.left = address1;
+            var address2 = null;
+            if (this._input.substring(this._offset, this._offset + 3) === "and") {
+                var klass0 = this.klass.SyntaxNode;
+                address2 = new klass0("and", this._offset, []);
+                this._offset += 3;
+            } else {
+                address2 = null;
+            }
+            if (address2) {
+                elements0.push(address2);
+                text0 += address2.textValue;
+                var address3 = null;
+                address3 = this.__consume__and_expression();
+                if (address3) {
+                    elements0.push(address3);
+                    text0 += address3.textValue;
+                    labelled0.right = address3;
+                } else {
+                    elements0 = null;
+                    this._offset = index2;
+                }
+            } else {
+                elements0 = null;
+                this._offset = index2;
+            }
+        } else {
+            elements0 = null;
+            this._offset = index2;
+        }
+        if (elements0) {
+            this._offset = index2;
+            var klass1 = null;
+            if (Pathology.And instanceof Function) {
+                klass1 = Pathology.And;
+            } else {
+                klass1 = this.klass.SyntaxNode;
+            }
+            address0 = new klass1(text0, this._offset, elements0, labelled0);
+            if (!(Pathology.And instanceof Function)) {
+                address0.extend(Pathology.And);
+            }
+            this._offset += text0.length;
+        } else {
+            address0 = null;
+        }
+        if (address0) {
+        } else {
+            this._offset = index1;
+            address0 = this.__consume__comparison();
+            if (address0) {
+            } else {
+                this._offset = index1;
+            }
+        }
+        return this._nodeCache.and_expression[index0] = address0;
     },
     __consume__comparison: function(input) {
         var address0 = null;
@@ -588,6 +750,7 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
             return cached;
         }
         var index1 = this._offset;
+        var index2 = this._offset;
         var elements0 = [];
         var labelled0 = {};
         var text0 = "";
@@ -604,35 +767,25 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
                 text0 += address2.textValue;
                 labelled0.comparator = address2;
                 var address3 = null;
-                var index2 = this._offset;
                 address3 = this.__consume__comparison();
-                if (address3) {
-                } else {
-                    this._offset = index2;
-                    address3 = this.__consume__atom();
-                    if (address3) {
-                    } else {
-                        this._offset = index2;
-                    }
-                }
                 if (address3) {
                     elements0.push(address3);
                     text0 += address3.textValue;
                     labelled0.right = address3;
                 } else {
                     elements0 = null;
-                    this._offset = index1;
+                    this._offset = index2;
                 }
             } else {
                 elements0 = null;
-                this._offset = index1;
+                this._offset = index2;
             }
         } else {
             elements0 = null;
-            this._offset = index1;
+            this._offset = index2;
         }
         if (elements0) {
-            this._offset = index1;
+            this._offset = index2;
             var klass0 = null;
             if (Pathology.Comparison instanceof Function) {
                 klass0 = Pathology.Comparison;
@@ -646,6 +799,15 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
             this._offset += text0.length;
         } else {
             address0 = null;
+        }
+        if (address0) {
+        } else {
+            this._offset = index1;
+            address0 = this.__consume__atom();
+            if (address0) {
+            } else {
+                this._offset = index1;
+            }
         }
         return this._nodeCache.comparison[index0] = address0;
     },
