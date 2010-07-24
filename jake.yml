@@ -15,4 +15,10 @@ packages:
   pathology:
     files:
       - pathology
+      - pathology/xpath_result
+      - pathology/xpath
+      - pathology/nodes/axis
+      - pathology/nodes/location_path
+      - pathology/nodes/location_step
+      - pathology/nodes/node_test
 

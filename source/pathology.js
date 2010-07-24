@@ -1,4 +1,13 @@
-var Pathology = new JS.Module('Pathology');
+var Pathology = new JS.Module('Pathology', {
+  extend: {
+    evaluate: function(xpathExpression, context, nsResolver, resultType, result) {
+      result = result || new Pathology.XPathResult(resultType);
+      var expression = Pathology.XPathParser.parse(xpathExpression);
+      expression.evaluate(context, nsResolver, resultType, result);
+      return result;
+    }
+  }
+});
 
 if (typeof XPathResult === 'undefined') {
   XPathResult = {
@@ -12,6 +21,12 @@ if (typeof XPathResult === 'undefined') {
     ORDERED_NODE_SNAPSHOT_TYPE:   7,
     ANY_UNORDERED_NODE_TYPE:      8,
     FIRST_ORDERED_NODE_TYPE:      9
+  };
+}
+
+if (typeof document.evaluate === 'undefined') {
+  document.evaluate = function() {
+    return Pathology.evaluate.apply(Pathology, arguments);
   };
 }
 
