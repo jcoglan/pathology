@@ -25,6 +25,12 @@ Pathology.XPathResult = new JS.Class('Pathology.XPathResult', {
   atomize: function() {
     if (this._nodes.length === 0) return null;
     return this._nodes[0].nodeValue;
+  },
+  
+  toString: function() {
+    var parts = [];
+    this.forEach(function(node) { parts.push(node.nodeValue) });
+    return parts.join('');
   }
 });
 

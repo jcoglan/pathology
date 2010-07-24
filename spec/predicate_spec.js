@@ -20,7 +20,6 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() {
     
     it("does not match if the first condition is false", function() {
       assertNodesMatch( [], "//p[text() = 'Some'][@id='second-para']" )
-    
     })
     
     it("does not match if the second condition is false", function() {
@@ -50,6 +49,26 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() {
   describe("concat()", function() {
     it("joins strings together", function() {
       assertNodesMatch( ["first-heading"], "//h1[text() = concat('T',\"he\",' ')]" )
+    })
+  })
+  
+  describe("contains()", function() {
+    it("matches if the first piece of text contains the second", function() {
+      assertNodesMatch( ["label-male", "label-female"], "//label[contains(text(),'ale')]" )
+    })
+    
+    it("allows a . to get the node's full text", function() {
+      assertNodesMatch( ["label-male", "label-female"], "//label[contains(.,'ale')]" )
+      assertNodesMatch( ["first-heading"],"//h1[contains(.,'The title')]" )
+    })
+    
+    it("does not match if the first piece of text does not contain the second", function() {
+      assertNodesMatch( [], "//label[contains(text(),'Fail')]" )
+      assertNodesMatch( [], "//h1[contains(text(),'The title')]" )
+    })
+    
+    it("matches if noramlize-space is used", function() {
+      assertNodesMatch( ["oddly-spaced"], "//p[contains(normalize-space(.),'Text with double spacing')]" )
     })
   })
 })

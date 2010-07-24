@@ -1005,6 +1005,11 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
                     if (address0) {
                     } else {
                         this._offset = index1;
+                        address0 = this.__consume__self();
+                        if (address0) {
+                        } else {
+                            this._offset = index1;
+                        }
                     }
                 }
             }
@@ -1582,6 +1587,32 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
             }
         }
         return this._nodeCache.string[index0] = address0;
+    },
+    __consume__self: function(input) {
+        var address0 = null;
+        var index0 = this._offset;
+        this._nodeCache.self = this._nodeCache.self || {};
+        var cached = this._nodeCache.self[index0];
+        if (cached) {
+            this._offset += cached.textValue.length;
+            return cached;
+        }
+        if (this._input.substring(this._offset, this._offset + 1) === ".") {
+            var klass0 = null;
+            if (Pathology.Self instanceof Function) {
+                klass0 = Pathology.Self;
+            } else {
+                klass0 = this.klass.SyntaxNode;
+            }
+            address0 = new klass0(".", this._offset, []);
+            if (!(Pathology.Self instanceof Function)) {
+                address0.extend(Pathology.Self);
+            }
+            this._offset += 1;
+        } else {
+            address0 = null;
+        }
+        return this._nodeCache.self[index0] = address0;
     },
     __consume__space: function(input) {
         var address0 = null;

@@ -21,15 +21,25 @@ Pathology.FunctionCall = new JS.Module('Pathology.FunctionCall', {
   
   extend: {
     REGISTER: {
-      concat: function() {
+      'concat': function() {
         return Array.prototype.join.call(arguments, "");
       },
       
-      not: function(value) {
+      'contains': function(haystack, needle) {
+        return haystack.toString().indexOf(needle) >= 0;
+      },
+      
+      'normalize-space': function(string) {
+        return string.toString().replace(/^\s*/g, '')
+                                .replace(/\s*$/g, '')
+                                .replace(/\s+/, ' ');
+      },
+      
+      'not': function(value) {
         return !value;
       },
       
-      text: function() {
+      'text': function() {
         return document.evaluate('/text()', this, null, XPathResult.ANY_TYPE, null);
       }
     }
