@@ -1,5 +1,5 @@
 Pathology.NodeTest = new JS.Module('Pathology.NodeTest', {
-  evaluate: function(context, predicate, nsResolver, resultType, result) {
+  evaluate: function(context, predicate, root, resultType, result) {
     if (this.condition_name) {
       switch (this.condition_name.textValue) {
         case 'node':
@@ -21,7 +21,7 @@ Pathology.NodeTest = new JS.Module('Pathology.NodeTest', {
     if (!predicate || !predicate.expression)
       return result.push(context);
     
-    if (predicate.expression.evaluate(context))
+    if (predicate.expression.evaluate(context, root))
       result.push(context);
   }
 });

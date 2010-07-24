@@ -49,5 +49,12 @@ LogicSpec = JS.Test.describe("Logic within predicates", function() {
       assertNodesMatch( [], "//p[text() = 'content' and @id='para']" )
     })
   })
+  
+  describe("finding the input for a label", function() {
+    it("uses a subquery", function() {
+      assertAttributesMatch( ["gender-female"], "//label[text()='Female']/@for" )
+      assertNodesMatch( ["gender-female"], "//input[@id=//label[text()='Female']/@for]" )
+    })
+  })
 })
 

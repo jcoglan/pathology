@@ -3,12 +3,14 @@ var Pathology = new JS.Module('Pathology', {
     evaluate: function(xpathExpression, context, nsResolver, resultType, result) {
       result = result || new Pathology.XPathResult(resultType);
       var expression = Pathology.XPathParser.parse(xpathExpression);
-      expression.evaluate(context, nsResolver, resultType, result);
+      expression.evaluate(context, context, resultType, result);
       return result;
     },
     
-    atomize: function(value) {
-      return value.atomize ? value.atomize() : value;
+    atomize: function(expression, context, root) {
+      var result = expression.evaluate(context, root);
+      if (result && result.atomize) result = result.atomize();
+      return result;
     }
   }
 });

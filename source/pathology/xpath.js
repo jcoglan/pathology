@@ -981,14 +981,19 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
         if (address0) {
         } else {
             this._offset = index1;
-            address0 = this.__consume__attribute();
+            address0 = this.__consume__location_path();
             if (address0) {
             } else {
                 this._offset = index1;
-                address0 = this.__consume__string();
+                address0 = this.__consume__attribute();
                 if (address0) {
                 } else {
                     this._offset = index1;
+                    address0 = this.__consume__string();
+                    if (address0) {
+                    } else {
+                        this._offset = index1;
+                    }
                 }
             }
         }

@@ -1,7 +1,7 @@
 Pathology.And = new JS.Module('Pathology.And', {
-  evaluate: function(context) {
-    return this.left.evaluate(context) &&
-           this.right.evaluate(context);
+  evaluate: function(context, root) {
+    return Pathology.atomize(this.left, context, root) &&
+           Pathology.atomize(this.right, context, root);
   }
 });
 

@@ -1,5 +1,5 @@
 Pathology.Attribute = new JS.Module('Pathology.Attribute', {
-  evaluate: function(context) {
+  evaluate: function(context, root) {
     if (!context.getAttributeNode && !context.getAttribute) return null;
     
     var name = this.node_name.textValue,
