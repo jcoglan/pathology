@@ -39,5 +39,11 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() {
       assertNodesMatch( [], "//h1[text() = 'The title']" )
     })
   })
+  
+  describe("concat()", function() {
+    it("joins strings together", function() {
+      assertNodesMatch( ["first-heading"], "//h1[text() = concat('T',\"he\",' ')]" )
+    })
+  })
 })
 

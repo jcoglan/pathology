@@ -21,6 +21,10 @@ Pathology.FunctionCall = new JS.Module('Pathology.FunctionCall', {
   
   extend: {
     REGISTER: {
+      concat: function() {
+        return Array.prototype.join.call(arguments, "");
+      },
+      
       not: function(value) {
         return !value;
       },
