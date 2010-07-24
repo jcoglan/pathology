@@ -8,8 +8,8 @@ Pathology.NodeTest = new JS.Module('Pathology.NodeTest', {
       }
     } else {
       var tagName = this.textValue.toLowerCase();
-      if (!context.tagName) return;
-      if (context.tagName.toLowerCase() === tagName)
+      if (!context.nodeName) return;
+      if (context.nodeName.toLowerCase() === tagName)
         result.push(context);
     }
   }
