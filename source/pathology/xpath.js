@@ -326,11 +326,100 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
             this._offset += cached.textValue.length;
             return cached;
         }
-        address0 = this.__consume__node_name();
-        if (!(Pathology.NodeTest instanceof Function)) {
-            address0.extend(Pathology.NodeTest);
+        var index1 = this._offset;
+        address0 = this.__consume__node_condition();
+        if (address0) {
+            if (!(Pathology.NodeTest instanceof Function)) {
+                address0.extend(Pathology.NodeTest);
+            }
+        } else {
+            this._offset = index1;
+            address0 = this.__consume__node_name();
+            if (address0) {
+                if (!(Pathology.NodeTest instanceof Function)) {
+                    address0.extend(Pathology.NodeTest);
+                }
+            } else {
+                this._offset = index1;
+            }
         }
         return this._nodeCache.node_test[index0] = address0;
+    },
+    __consume__node_condition: function(input) {
+        var address0 = null;
+        var index0 = this._offset;
+        this._nodeCache.node_condition = this._nodeCache.node_condition || {};
+        var cached = this._nodeCache.node_condition[index0];
+        if (cached) {
+            this._offset += cached.textValue.length;
+            return cached;
+        }
+        var index1 = this._offset;
+        var elements0 = [];
+        var labelled0 = {};
+        var text0 = "";
+        var address1 = null;
+        var remaining0 = 1;
+        var index2 = this._offset;
+        var elements1 = [];
+        var text1 = "";
+        var address2 = true;
+        while (address2) {
+            var temp0 = this._input.substring(this._offset, this._offset + 1);
+            var match0 = null;
+            if (match0 = temp0.match(/^[a-z\-]/)) {
+                var klass0 = this.klass.SyntaxNode;
+                address2 = new klass0(match0[0], this._offset, []);
+                this._offset += 1;
+            } else {
+                address2 = null;
+            }
+            if (address2) {
+                elements1.push(address2);
+                text1 += address2.textValue;
+                remaining0 -= 1;
+            }
+        }
+        if (remaining0 <= 0) {
+            this._offset = index2;
+            var klass1 = this.klass.SyntaxNode;
+            address1 = new klass1(text1, this._offset, elements1);
+            this._offset += text1.length;
+        } else {
+            address1 = null;
+        }
+        if (address1) {
+            elements0.push(address1);
+            text0 += address1.textValue;
+            labelled0.condition_name = address1;
+            var address3 = null;
+            if (this._input.substring(this._offset, this._offset + 2) === "()") {
+                var klass2 = this.klass.SyntaxNode;
+                address3 = new klass2("()", this._offset, []);
+                this._offset += 2;
+            } else {
+                address3 = null;
+            }
+            if (address3) {
+                elements0.push(address3);
+                text0 += address3.textValue;
+            } else {
+                elements0 = null;
+                this._offset = index1;
+            }
+        } else {
+            elements0 = null;
+            this._offset = index1;
+        }
+        if (elements0) {
+            this._offset = index1;
+            var klass3 = this.klass.SyntaxNode;
+            address0 = new klass3(text0, this._offset, elements0, labelled0);
+            this._offset += text0.length;
+        } else {
+            address0 = null;
+        }
+        return this._nodeCache.node_condition[index0] = address0;
     },
     __consume__node_name: function(input) {
         var address0 = null;
