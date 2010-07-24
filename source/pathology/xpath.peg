@@ -22,9 +22,13 @@ grammar Pathology.XPath
   
   atom                <- space expression:("(" in_parens:expression ")" / value) space <Pathology.Atom>
   
-  value               <- negated_expression / attribute
+  value               <- function_call / attribute
   
-  negated_expression  <- "not(" expression ")" <Pathology.Negation>
+  function_call       <- function_name "(" function_args ")" <Pathology.FunctionCall>
+  
+  function_name       <- [a-z\-]+
+  
+  function_args       <- (first:expression rest:("," expression)*)?
   
   attribute           <- "@" node_name <Pathology.Attribute>
   
