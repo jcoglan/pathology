@@ -45,6 +45,7 @@ JS.require('JS.Test', 'Pathology', function() {
     
     JS.require('PathSpec',
                'AttributeSpec',
+               'PredicateSpec',
             
     JS.Test.method('autorun'))
 })

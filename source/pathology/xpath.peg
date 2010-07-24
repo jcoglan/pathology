@@ -1,19 +1,32 @@
 grammar Pathology.XPath
   
-  location_path     <- location_step+ <Pathology.LocationPath>
+  location_path       <- location_step+ <Pathology.LocationPath>
   
-  location_step     <- axis test:node_test? <Pathology.LocationStep>
+  location_step       <- axis test:node_test? predicate:node_predicate? <Pathology.LocationStep>
   
-  axis              <- "/" axis_identifier <Pathology.Axis>
+  axis                <- "/" axis_identifier <Pathology.Axis>
   
-  axis_identifier   <- axis_name:[a-z\-]+ "::" / axis_shorthand
+  axis_identifier     <- axis_name:[a-z\-]+ "::" / axis_shorthand
   
-  axis_shorthand    <- "@" / ".." / "." / "/" / ""
+  axis_shorthand      <- "@" / ".." / "." / "/" / ""
   
-  node_test         <- (node_condition / node_name) <Pathology.NodeTest>
+  node_test           <- (node_condition / node_name) <Pathology.NodeTest>
   
-  node_condition    <- condition_name:[a-z\-]+ "()"
+  node_condition      <- condition_name:[a-z\-]+ "()"
   
-  node_name         <- [A-Za-z0-9\-]+
+  node_name           <- [A-Za-z0-9\-]+
   
+  node_predicate      <- "[" expression "]"
   
+  expression          <- atom
+  
+  atom                <- space expression:("(" in_parens:expression ")" / value) space <Pathology.Atom>
+  
+  value               <- negated_expression / attribute
+  
+  negated_expression  <- "not(" expression ")" <Pathology.Negation>
+  
+  attribute           <- "@" node_name <Pathology.Attribute>
+  
+  space               <- " "*
+

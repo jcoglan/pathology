@@ -17,8 +17,11 @@ packages:
       - pathology
       - pathology/xpath_result
       - pathology/xpath
+      - pathology/nodes/atom
+      - pathology/nodes/attribute
       - pathology/nodes/axis
       - pathology/nodes/location_path
       - pathology/nodes/location_step
+      - pathology/nodes/negation
       - pathology/nodes/node_test
 
