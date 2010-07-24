@@ -20,8 +20,10 @@ packages:
       - pathology/nodes/atom
       - pathology/nodes/attribute
       - pathology/nodes/axis
+      - pathology/nodes/comparison
       - pathology/nodes/function_call
       - pathology/nodes/location_path
       - pathology/nodes/location_step
       - pathology/nodes/node_test
+      - pathology/nodes/string
 

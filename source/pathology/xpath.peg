@@ -18,11 +18,15 @@ grammar Pathology.XPath
   
   node_predicate      <- "[" expression "]"
   
-  expression          <- atom
+  expression          <- comparison / atom
+  
+  comparison          <- left:atom comparator right:(comparison / atom) <Pathology.Comparison>
+  
+  comparator          <- "!=" / "="
   
   atom                <- space expression:("(" in_parens:expression ")" / value) space <Pathology.Atom>
   
-  value               <- function_call / attribute
+  value               <- function_call / attribute / string
   
   function_call       <- function_name "(" function_args ")" <Pathology.FunctionCall>
   
@@ -31,6 +35,8 @@ grammar Pathology.XPath
   function_args       <- (first:expression rest:("," expression)*)?
   
   attribute           <- "@" node_name <Pathology.Attribute>
+  
+  string              <- ("'" ("\\" . / [^'])* "'" / "\"" ("\\" . / [^"])* "\"") <Pathology.String>
   
   space               <- " "*
 
