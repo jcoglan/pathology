@@ -6,6 +6,7 @@ Pathology.XPathResult = new JS.Class('Pathology.XPathResult', {
   },
   
   push: function(node) {
+    if (this._type !== 0 && node.nodeType !== this._type) return;
     this._nodes.push(node);
   },
   
