@@ -21,6 +21,20 @@ PathSpec = JS.Test.describe("Path selectors", function() {
     })
   })
   
+  describe("with a parent selector", function() {
+    it("selects the parent", function() {
+      assertNodesMatch( ["section-div"], "//h1/.." )
+      assertNodesMatch( ["section-div"], "//h1/parent::node()" )
+    })
+  })
+  
+  describe("with a self selector", function() {
+    it("selects the current node", function() {
+      assertNodesMatch( ["first-heading"], "//h1/." )
+      assertNodesMatch( ["first-heading"], "//h1/self::node()" )
+    })
+  })
+  
   describe("text()", function() {
     it("matches text nodes", function() {
       assertTextMatch( ["Male"], "//label[@for='gender-male']/text()" )

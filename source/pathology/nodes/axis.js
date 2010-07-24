@@ -17,7 +17,15 @@ Pathology.Axis = new JS.Module('Pathology.Axis', {
           block.call(scope, attributes[i]);
         }
         break;
-        
+      
+      case 'parent':
+        block.call(scope, context.parentNode);
+        break;
+      
+      case 'self':
+        block.call(scope, context);
+        break;
+      
       case 'descendant-or-self':
         block.call(scope, context);
         for (var i = 0, n = children.length; i < n; i++) {
