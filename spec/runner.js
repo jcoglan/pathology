@@ -11,7 +11,7 @@ JS.Packages(function() { with(this) {
 JS.require('JS.Test', 'Pathology', function() {
     
     Pathology.SpecHelper = new JS.Module({
-      assertDomMatch: function(expectedIds, xpath) {
+      assertNodesMatch: function(expectedIds, xpath) {
         var expected = [], id;
         while (id = expectedIds.shift())
           expected.push(document.getElementById(id));
