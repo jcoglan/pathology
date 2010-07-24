@@ -5,6 +5,10 @@ Pathology.NodeTest = new JS.Module('Pathology.NodeTest', {
         case 'node':
           result.push(context);
           break;
+        case 'text':
+          if (context.nodeType === XPathResult.BOOLEAN_TYPE)
+            result.push(context);
+          break;
       }
     } else {
       var tagName = this.textValue.toLowerCase();

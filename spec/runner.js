@@ -40,6 +40,16 @@ JS.require('JS.Test', 'Pathology', function() {
           this.assertEqual( value, attributes[i].nodeValue );
           this.assertEqual( XPathResult.STRING_TYPE, attributes[i].nodeType );
         }, this);
+      },
+      
+      assertTextMatch: function(expectedValues, xpath) {
+        var texts = this.performQuery(xpath);
+        this.assertEqual( expectedValues.length, texts.length );
+        
+        this.forEach(expectedValues, function(value, i) {
+          this.assertEqual( value, texts[i].nodeValue );
+          this.assertEqual( XPathResult.BOOLEAN_TYPE, texts[i].nodeType );
+        }, this);
       }
     });
     

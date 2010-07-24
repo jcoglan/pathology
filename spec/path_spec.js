@@ -20,5 +20,11 @@ PathSpec = JS.Test.describe("Path selectors", function() {
       assertNodesMatch( ["first-heading"], "/descendant-or-self::node()/h1" )
     })
   })
+  
+  describe("text()", function() {
+    it("matches text nodes", function() {
+      assertTextMatch( ["Male"], "//label[@for='gender-male']/text()" )
+    })
+  })
 })
 
