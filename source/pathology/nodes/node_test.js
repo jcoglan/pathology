@@ -1,21 +1,28 @@
 Pathology.NodeTest = new JS.Module('Pathology.NodeTest', {
-  evaluate: function(context, nsResolver, resultType, result) {
+  evaluate: function(context, predicate, nsResolver, resultType, result) {
     if (this.condition_name) {
       switch (this.condition_name.textValue) {
         case 'node':
-          result.push(context);
+          // NOOP
           break;
         case 'text':
-          if (context.nodeType === XPathResult.BOOLEAN_TYPE)
-            result.push(context);
+          if (context.nodeType !== XPathResult.BOOLEAN_TYPE)
+            return;
           break;
       }
     } else {
       var tagName = this.textValue.toLowerCase();
-      if (!context.nodeName) return;
-      if (context.nodeName.toLowerCase() === tagName)
-        result.push(context);
+      if (tagName !== '*') {
+        if (!context.nodeName) return;
+        if (context.nodeName.toLowerCase() !== tagName) return;
+      }
     }
+    
+    if (!predicate || !predicate.expression)
+      return result.push(context);
+    
+    if (predicate.expression.evaluate(context))
+      result.push(context);
   }
 });
 

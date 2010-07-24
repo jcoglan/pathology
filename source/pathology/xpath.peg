@@ -10,7 +10,7 @@ grammar Pathology.XPath
   
   axis_shorthand      <- "@" / ".." / "." / "/" / ""
   
-  node_test           <- (node_condition / node_name) <Pathology.NodeTest>
+  node_test           <- (node_condition / node_name / "*") <Pathology.NodeTest>
   
   node_condition      <- condition_name:[a-z\-]+ "()"
   

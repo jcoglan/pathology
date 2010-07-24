@@ -1,7 +1,7 @@
 Pathology.FunctionCall = new JS.Module('Pathology.FunctionCall', {
   getArguments: function(context) {
     var args = [];
-    if (this.function_args.first) {
+    if (this.function_args.first.evaluate) {
       args.push(this.function_args.first.evaluate(context));
     }
     if (this.function_args.rest) {
@@ -16,13 +16,18 @@ Pathology.FunctionCall = new JS.Module('Pathology.FunctionCall', {
     var args = this.getArguments(context),
         proc = Pathology.FunctionCall.REGISTER[this.function_name.textValue];
     
-    return proc.apply(this, args);
+    return proc.apply(context, args);
   },
   
   extend: {
     REGISTER: {
       not: function(value) {
         return !value;
+      },
+      
+      text: function() {
+        var query = document.evaluate('/text()', this, null, XPathResult.ANY_TYPE, null);
+        return query.atomize();
       }
     }
   }

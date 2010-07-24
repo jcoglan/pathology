@@ -5,6 +5,10 @@ var Pathology = new JS.Module('Pathology', {
       var expression = Pathology.XPathParser.parse(xpathExpression);
       expression.evaluate(context, nsResolver, resultType, result);
       return result;
+    },
+    
+    atomize: function(value) {
+      return value.atomize ? value.atomize() : value;
     }
   }
 });

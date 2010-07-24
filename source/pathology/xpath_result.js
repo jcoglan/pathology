@@ -20,6 +20,11 @@ Pathology.XPathResult = new JS.Class('Pathology.XPathResult', {
   forEach: function(block, scope) {
     for (var i = 0, n = this._nodes.length; i < n; i++)
       block.call(scope, this._nodes[i], i);
+  },
+  
+  atomize: function() {
+    if (this._nodes.length === 0) return null;
+    return this._nodes[0].nodeValue;
   }
 });
 

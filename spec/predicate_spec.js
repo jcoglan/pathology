@@ -24,5 +24,20 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() {
       assertNodesMatch( ["gender-male"], '//input[ @id != "gender-female" ]' )
     })
   })
+  
+  describe("text()", function() {
+    it("filters by node text", function() {
+      assertNodesMatch( ["label-male"], "//label[text() = 'Male']" )
+      assertNodesMatch( ["em"], "//*[text() = 'title']" )
+    })
+    
+    it("returns the value of the first text node", function() {
+      assertNodesMatch( ["first-heading"], "//h1[text() = 'The ']" )
+    })
+    
+    it("does not return the entire text of the node", function() {
+      assertNodesMatch( [], "//h1[text() = 'The title']" )
+    })
+  })
 })
 

@@ -359,6 +359,20 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
                 }
             } else {
                 this._offset = index1;
+                if (this._input.substring(this._offset, this._offset + 1) === "*") {
+                    var klass0 = this.klass.SyntaxNode;
+                    address0 = new klass0("*", this._offset, []);
+                    this._offset += 1;
+                } else {
+                    address0 = null;
+                }
+                if (address0) {
+                    if (!(Pathology.NodeTest instanceof Function)) {
+                        address0.extend(Pathology.NodeTest);
+                    }
+                } else {
+                    this._offset = index1;
+                }
             }
         }
         return this._nodeCache.node_test[index0] = address0;
