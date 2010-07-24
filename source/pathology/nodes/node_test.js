@@ -1,5 +1,5 @@
 Pathology.NodeTest = new JS.Module('Pathology.NodeTest', {
-  evaluate: function(context, predicate, root, resultType, result) {
+  evaluate: function(context, predicates, root, resultType, result) {
     if (this.condition_name) {
       switch (this.condition_name.textValue) {
         case 'node':
@@ -18,11 +18,12 @@ Pathology.NodeTest = new JS.Module('Pathology.NodeTest', {
       }
     }
     
-    if (!predicate || !predicate.expression)
-      return result.push(context);
+    var viable = true;
+    predicates.forEach(function(predicate) {
+      viable = viable && predicate.expression.evaluate(context, root);
+    });
     
-    if (predicate.expression.evaluate(context, root))
-      result.push(context);
+    if (viable) result.push(context);
   }
 });
 

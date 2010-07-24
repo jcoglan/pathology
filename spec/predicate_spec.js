@@ -13,6 +13,25 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() {
     })
   })
   
+  describe("multiple predicates", function() {
+    it("match if both conditions are true", function() {
+      assertNodesMatch( ["second-para"], "//p[text() = 'Some content'][@id='second-para']" )
+    })
+    
+    it("does not match if the first condition is false", function() {
+      assertNodesMatch( [], "//p[text() = 'Some'][@id='second-para']" )
+    
+    })
+    
+    it("does not match if the second condition is false", function() {
+      assertNodesMatch( [], "//p[text() = 'Some content'][@id='para']" )
+    })
+    
+    it("does not match if both conditions are false", function() {
+      assertNodesMatch( [], "//p[text() = 'content'][@id='para']" )
+    })
+  })
+  
   describe("text()", function() {
     it("filters by node text", function() {
       assertNodesMatch( ["label-male"], "//label[text() = 'Male']" )

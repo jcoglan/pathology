@@ -83,19 +83,31 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
                 text0 += address2.textValue;
                 labelled0.test = address2;
                 var address3 = null;
+                var remaining0 = 0;
                 var index3 = this._offset;
-                address3 = this.__consume__node_predicate();
-                if (address3) {
-                } else {
+                var elements1 = [];
+                var text1 = "";
+                var address4 = true;
+                while (address4) {
+                    address4 = this.__consume__node_predicate();
+                    if (address4) {
+                        elements1.push(address4);
+                        text1 += address4.textValue;
+                        remaining0 -= 1;
+                    }
+                }
+                if (remaining0 <= 0) {
                     this._offset = index3;
                     var klass1 = this.klass.SyntaxNode;
-                    address3 = new klass1("", this._offset, []);
-                    this._offset += 0;
+                    address3 = new klass1(text1, this._offset, elements1);
+                    this._offset += text1.length;
+                } else {
+                    address3 = null;
                 }
                 if (address3) {
                     elements0.push(address3);
                     text0 += address3.textValue;
-                    labelled0.predicate = address3;
+                    labelled0.predicates = address3;
                 } else {
                     elements0 = null;
                     this._offset = index1;

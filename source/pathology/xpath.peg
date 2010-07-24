@@ -2,7 +2,7 @@ grammar Pathology.XPath
   
   location_path       <- location_step+ <Pathology.LocationPath>
   
-  location_step       <- axis test:node_test? predicate:node_predicate?
+  location_step       <- axis test:node_test? predicates:node_predicate*
                          <Pathology.LocationStep>
   
   axis                <- "/" axis_identifier <Pathology.Axis>
