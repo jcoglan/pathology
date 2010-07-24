@@ -16,9 +16,9 @@ Pathology.XPathResult = new JS.Class('Pathology.XPathResult', {
     return node;
   },
   
-  forEach: function(block, context) {
+  forEach: function(block, scope) {
     for (var i = 0, n = this._nodes.length; i < n; i++)
-      block.call(context, this._nodes[i], i);
+      block.call(scope, this._nodes[i], i);
   }
 });
 

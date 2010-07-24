@@ -2,13 +2,13 @@ grammar Pathology.XPath
   
   location_path     <- location_step+ <Pathology.LocationPath>
   
-  location_step     <- axis node_test <Pathology.LocationStep>
+  location_step     <- axis test:node_test? <Pathology.LocationStep>
   
-  axis              <- "/" axis_name <Pathology.Axis>
+  axis              <- "/" axis_identifier <Pathology.Axis>
   
-  axis_name         <- [a-z\-]+ "::" / axis_shorthand
+  axis_identifier   <- axis_name:[a-z\-]+ "::" / axis_shorthand
   
-  axis_shorthand    <- "@" / ".." / "." / ""
+  axis_shorthand    <- "@" / ".." / "." / "/" / ""
   
   node_test         <- node_name <Pathology.NodeTest>
   

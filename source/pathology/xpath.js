@@ -69,11 +69,19 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
             text0 += address1.textValue;
             labelled0.axis = address1;
             var address2 = null;
+            var index2 = this._offset;
             address2 = this.__consume__node_test();
+            if (address2) {
+            } else {
+                this._offset = index2;
+                var klass0 = this.klass.SyntaxNode;
+                address2 = new klass0("", this._offset, []);
+                this._offset += 0;
+            }
             if (address2) {
                 elements0.push(address2);
                 text0 += address2.textValue;
-                labelled0.node_test = address2;
+                labelled0.test = address2;
             } else {
                 elements0 = null;
                 this._offset = index1;
@@ -84,13 +92,13 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
         }
         if (elements0) {
             this._offset = index1;
-            var klass0 = null;
+            var klass1 = null;
             if (Pathology.LocationStep instanceof Function) {
-                klass0 = Pathology.LocationStep;
+                klass1 = Pathology.LocationStep;
             } else {
-                klass0 = this.klass.SyntaxNode;
+                klass1 = this.klass.SyntaxNode;
             }
-            address0 = new klass0(text0, this._offset, elements0, labelled0);
+            address0 = new klass1(text0, this._offset, elements0, labelled0);
             if (!(Pathology.LocationStep instanceof Function)) {
                 address0.extend(Pathology.LocationStep);
             }
@@ -125,11 +133,11 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
             elements0.push(address1);
             text0 += address1.textValue;
             var address2 = null;
-            address2 = this.__consume__axis_name();
+            address2 = this.__consume__axis_identifier();
             if (address2) {
                 elements0.push(address2);
                 text0 += address2.textValue;
-                labelled0.axis_name = address2;
+                labelled0.axis_identifier = address2;
             } else {
                 elements0 = null;
                 this._offset = index1;
@@ -156,11 +164,11 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
         }
         return this._nodeCache.axis[index0] = address0;
     },
-    __consume__axis_name: function(input) {
+    __consume__axis_identifier: function(input) {
         var address0 = null;
         var index0 = this._offset;
-        this._nodeCache.axis_name = this._nodeCache.axis_name || {};
-        var cached = this._nodeCache.axis_name[index0];
+        this._nodeCache.axis_identifier = this._nodeCache.axis_identifier || {};
+        var cached = this._nodeCache.axis_identifier[index0];
         if (cached) {
             this._offset += cached.textValue.length;
             return cached;
@@ -203,6 +211,7 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
         if (address1) {
             elements0.push(address1);
             text0 += address1.textValue;
+            labelled0.axis_name = address1;
             var address3 = null;
             if (this._input.substring(this._offset, this._offset + 2) === "::") {
                 var klass2 = this.klass.SyntaxNode;
@@ -239,7 +248,7 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
                 this._offset = index1;
             }
         }
-        return this._nodeCache.axis_name[index0] = address0;
+        return this._nodeCache.axis_identifier[index0] = address0;
     },
     __consume__axis_shorthand: function(input) {
         var address0 = null;
@@ -281,16 +290,27 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
                 if (address0) {
                 } else {
                     this._offset = index1;
-                    if (this._input.substring(this._offset, this._offset + 0) === "") {
+                    if (this._input.substring(this._offset, this._offset + 1) === "/") {
                         var klass3 = this.klass.SyntaxNode;
-                        address0 = new klass3("", this._offset, []);
-                        this._offset += 0;
+                        address0 = new klass3("/", this._offset, []);
+                        this._offset += 1;
                     } else {
                         address0 = null;
                     }
                     if (address0) {
                     } else {
                         this._offset = index1;
+                        if (this._input.substring(this._offset, this._offset + 0) === "") {
+                            var klass4 = this.klass.SyntaxNode;
+                            address0 = new klass4("", this._offset, []);
+                            this._offset += 0;
+                        } else {
+                            address0 = null;
+                        }
+                        if (address0) {
+                        } else {
+                            this._offset = index1;
+                        }
                     }
                 }
             }
