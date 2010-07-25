@@ -9,7 +9,7 @@ LogicSpec = JS.Test.describe("Logic within predicates", function() {
   
   describe("inequality comparison", function() {
     it("matches the element without the required ID", function() {
-      assertNodesMatch( ["gender-male"], '//input[ @id != "gender-female" ]' )
+      assertNodesMatch( ["gender-male"], '//fieldset/input[ @id != "gender-female" ]' )
     })
   })
   
@@ -29,6 +29,12 @@ LogicSpec = JS.Test.describe("Logic within predicates", function() {
     it("does not match if neither condition is true", function() {
       assertNodesMatch( [], "//p[text() = 'First' or @id = 'nothing']" )
     })
+    
+    describe("complex or query with functions", function() {
+      it("matches nodes for which any of the conditions are true", function() {
+        assertNodesMatch( ["link1", "link2", "link3"], "//a[@href][@id='Show Status' or contains(.,'Show Status') or contains(@title,'Show Status') or img[contains(@alt,'Show Status')]]" )
+      })
+    })
   })
   
   describe("and", function() {
@@ -47,6 +53,12 @@ LogicSpec = JS.Test.describe("Logic within predicates", function() {
     
     it("does not match if both conditions are false", function() {
       assertNodesMatch( [], "//p[text() = 'content' and @id='para']" )
+    })
+    
+    describe("complex and query using attributes", function() {
+      it("matches the input for which all the conditions are true", function() {
+        assertNodesMatch( ["text-input", "text-field"], "//form/input[not(@type) or (@type!='radio' and @type!='checkbox' and @type!='hidden')]" )
+      })
     })
   })
   

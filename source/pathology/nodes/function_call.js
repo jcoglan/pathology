@@ -26,6 +26,7 @@ Pathology.FunctionCall = new JS.Module('Pathology.FunctionCall', {
       },
       
       'contains': function(haystack, needle) {
+        if (!haystack) return false;
         return haystack.toString().indexOf(needle) >= 0;
       },
       

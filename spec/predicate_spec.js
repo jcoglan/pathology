@@ -9,7 +9,7 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() {
   
   describe("with a negated attribute with no value", function() {
     it("matches elements without that attribute", function() {
-      assertNodesMatch( ["gender-male"], "//input[not(@checked)]" )
+      assertNodesMatch( ["gender-male"], "//fieldset/input[not(@checked)]" )
     })
   })
   
