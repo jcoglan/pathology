@@ -29,7 +29,7 @@ Pathology.XPathResult = new JS.Class('Pathology.XPathResult', {
     return node.nodeValue;
   },
   
-  toString: function() {
+  makeString: function() {
     var parts = [];
     this.forEach(function(node) { parts.push(node.nodeValue) });
     return parts.join('');

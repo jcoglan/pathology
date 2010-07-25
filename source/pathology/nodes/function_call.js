@@ -31,6 +31,8 @@ Pathology.FunctionCall = new JS.Module('Pathology.FunctionCall', {
       },
       
       'normalize-space': function(string) {
+        if (string.makeString) string = string.makeString();
+        
         return string.toString().replace(/^\s*/g, '')
                                 .replace(/\s*$/g, '')
                                 .replace(/\s+/, ' ');

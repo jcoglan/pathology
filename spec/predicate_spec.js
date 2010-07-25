@@ -67,7 +67,7 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() {
       assertNodesMatch( [], "//h1[contains(text(),'The title')]" )
     })
     
-    it("matches if noramlize-space is used", function() {
+    it("matches if normalize-space is used", function() {
       assertNodesMatch( ["oddly-spaced"], "//p[contains(normalize-space(.),'Text with double spacing')]" )
     })
   })

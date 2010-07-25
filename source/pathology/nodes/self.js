@@ -4,9 +4,9 @@ Pathology.Self = new JS.Module('Pathology.Self', {
     return this;
   },
   
-  toString: function() {
+  makeString: function() {
     var result = document.evaluate('//text()', this._context, null, XPathResult.ANY_TYPE, null);
-    return result.toString();
+    return result.makeString();
   }
 });
 
