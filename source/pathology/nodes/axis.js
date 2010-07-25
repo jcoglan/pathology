@@ -1,10 +1,8 @@
 Pathology.Axis = new JS.Module('Pathology.Axis', {
   getName: function() {
-    var identifier = this.axis_identifier;
-    
-    return identifier.axis_name
-         ? identifier.axis_name.textValue
-         : Pathology.Axis.SHORTHANDS[identifier.textValue];
+    return this.axis_name
+         ? this.axis_name.textValue
+         : Pathology.Axis.SHORTHANDS[this.textValue];
   },
   
   walk: function(context, block, scope) {

@@ -35,6 +35,12 @@ PathSpec = JS.Test.describe("Path selectors", function() {
     })
   })
   
+  describe("with a predicate containing a relative path", function() {
+    it("matches an element with the required child", function() {
+      assertNodesMatch( ["section-div"], "//div[h1]" )
+    })
+  })
+  
   describe("text()", function() {
     it("matches text nodes", function() {
       assertTextMatch( ["Male"], "//label[@for='gender-male']/text()" )

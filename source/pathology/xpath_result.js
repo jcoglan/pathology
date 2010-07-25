@@ -23,8 +23,10 @@ Pathology.XPathResult = new JS.Class('Pathology.XPathResult', {
   },
   
   atomize: function() {
-    if (this._nodes.length === 0) return null;
-    return this._nodes[0].nodeValue;
+    var node = this._nodes[0];
+    if (!node) return null;
+    if (node.nodeValue === undefined || node.nodeValue === null) return node;
+    return node.nodeValue;
   },
   
   toString: function() {

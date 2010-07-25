@@ -20,7 +20,8 @@ Pathology.NodeTest = new JS.Module('Pathology.NodeTest', {
     
     var viable = true;
     predicates.forEach(function(predicate) {
-      viable = viable && predicate.expression.evaluate(context, root);
+      var expression = predicate.expression;
+      viable = viable && Pathology.atomize(expression, context, root);
     });
     
     if (viable) result.push(context);
