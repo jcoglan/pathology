@@ -15,29 +15,29 @@ PathSpec = JS.Test.describe("Path selectors", function() {
   
   describe("with a recursive child selector", function() {
     it("matches all nodes with the given name", function() {
-      assertNodesMatch( ["first-heading"], "//h1" )
-      assertNodesMatch( ["first-heading"], "/descendant-or-self::h1" )
-      assertNodesMatch( ["first-heading"], "/descendant-or-self::node()/h1" )
+      assertNodesMatch( ["first-heading", "second-heading"], "//h1" )
+      assertNodesMatch( ["first-heading", "second-heading"], "/descendant-or-self::h1" )
+      assertNodesMatch( ["first-heading", "second-heading"], "/descendant-or-self::node()/h1" )
     })
   })
   
   describe("with a parent selector", function() {
     it("selects the parent", function() {
-      assertNodesMatch( ["section-div"], "//h1/.." )
-      assertNodesMatch( ["section-div"], "//h1/parent::node()" )
+      assertNodesMatch( ["section-div", "another-div"], "//h1/.." )
+      assertNodesMatch( ["section-div", "another-div"], "//h1/parent::node()" )
     })
   })
   
   describe("with a self selector", function() {
     it("selects the current node", function() {
-      assertNodesMatch( ["first-heading"], "//h1/." )
-      assertNodesMatch( ["first-heading"], "//h1/self::node()" )
+      assertNodesMatch( ["first-heading", "second-heading"], "//h1/." )
+      assertNodesMatch( ["first-heading", "second-heading"], "//h1/self::node()" )
     })
   })
   
   describe("with a predicate containing a relative path", function() {
     it("matches an element with the required child", function() {
-      assertNodesMatch( ["section-div"], "//div[h1]" )
+      assertNodesMatch( ["section-div", "another-div"], "//div[h1]" )
     })
   })
   
