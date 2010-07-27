@@ -1,15 +1,13 @@
-Pathology.Axis = new JS.Module('Pathology.Axis', {
-  getName: function() {
-    return this.axis_name
-         ? this.axis_name.textValue
-         : Pathology.Axis.SHORTHANDS[this.textValue];
+Pathology.Axis = new JS.Class('Pathology.Axis', {
+  initialize: function(name) {
+    this.name = name;
   },
   
   walk: function(context, block, scope) {
     var children   = context.childNodes,
         attributes = context.attributes;
     
-    switch (this.getName()) {
+    switch (this.name) {
       case 'attribute':
         for (var i = 0, n = attributes.length; i < n; i++) {
           block.call(scope, attributes[i]);
@@ -46,6 +44,14 @@ Pathology.Axis = new JS.Module('Pathology.Axis', {
       '.' : 'self',
       '/' : 'descendant-or-self',
       ''  : 'child'
+    },
+    
+    fromAST: function(node) {
+      var name = node.axis_name
+               ? node.axis_name.textValue
+               : node.textValue;
+               
+      return new this(this.SHORTHANDS[name] || name);
     }
   }
 });

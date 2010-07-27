@@ -3,14 +3,13 @@ grammar Pathology.XPath
   location_path       <- head:location_step rest:location_step*
                          <Pathology.LocationPath>
   
-  location_step       <- head:(slash:"/" axis test:node_test? / axis test:node_test)
+  location_step       <- "/"? selector:(axis test:node_test? / axis:axis? test:node_test)
                          predicates:node_predicate*
                          <Pathology.LocationStep>
   
-  axis                <- (axis_name:[a-z\-]+ "::" / axis_shorthand)
-                         <Pathology.Axis>
+  axis                <- axis_name:[a-z\-]+ "::" / axis_shorthand
   
-  axis_shorthand      <- "@" / ".." / "." / "/" / ""
+  axis_shorthand      <- "@" / ".." / "." / "/"
   
   node_test           <- (node_condition / node_name / "*") <Pathology.NodeTest>
   
@@ -36,7 +35,7 @@ grammar Pathology.XPath
   atom                <- space expression:("(" in_parens:expression ")" / value) space
                          <Pathology.Atom>
   
-  value               <- function_call / attribute / string / self / location_path
+  value               <- function_call / attribute / string / location_path
   
   function_call       <- function_name "(" function_args ")" <Pathology.FunctionCall>
   
@@ -48,8 +47,6 @@ grammar Pathology.XPath
   
   string              <- ("'" ("\\" . / [^'])* "'" / "\"" ("\\" . / [^"])* "\"")
                          <Pathology.String>
-  
-  self                <- "." <Pathology.Self>
   
   space               <- " "*
 

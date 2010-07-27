@@ -95,22 +95,29 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
         var text0 = "";
         var address1 = null;
         var index2 = this._offset;
-        var index3 = this._offset;
-        var elements1 = [];
-        var labelled1 = {};
-        var text1 = "";
-        var address2 = null;
         if (this._input.substring(this._offset, this._offset + 1) === "/") {
             var klass0 = this.klass.SyntaxNode;
-            address2 = new klass0("/", this._offset, []);
+            address1 = new klass0("/", this._offset, []);
             this._offset += 1;
         } else {
-            address2 = null;
+            address1 = null;
         }
-        if (address2) {
-            elements1.push(address2);
-            text1 += address2.textValue;
-            labelled1.slash = address2;
+        if (address1) {
+        } else {
+            this._offset = index2;
+            var klass1 = this.klass.SyntaxNode;
+            address1 = new klass1("", this._offset, []);
+            this._offset += 0;
+        }
+        if (address1) {
+            elements0.push(address1);
+            text0 += address1.textValue;
+            var address2 = null;
+            var index3 = this._offset;
+            var index4 = this._offset;
+            var elements1 = [];
+            var labelled1 = {};
+            var text1 = "";
             var address3 = null;
             address3 = this.__consume__axis();
             if (address3) {
@@ -118,13 +125,13 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
                 text1 += address3.textValue;
                 labelled1.axis = address3;
                 var address4 = null;
-                var index4 = this._offset;
+                var index5 = this._offset;
                 address4 = this.__consume__node_test();
                 if (address4) {
                 } else {
-                    this._offset = index4;
-                    var klass1 = this.klass.SyntaxNode;
-                    address4 = new klass1("", this._offset, []);
+                    this._offset = index5;
+                    var klass2 = this.klass.SyntaxNode;
+                    address4 = new klass2("", this._offset, []);
                     this._offset += 0;
                 }
                 if (address4) {
@@ -133,94 +140,102 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
                     labelled1.test = address4;
                 } else {
                     elements1 = null;
-                    this._offset = index3;
+                    this._offset = index4;
                 }
             } else {
                 elements1 = null;
-                this._offset = index3;
+                this._offset = index4;
             }
-        } else {
-            elements1 = null;
-            this._offset = index3;
-        }
-        if (elements1) {
-            this._offset = index3;
-            var klass2 = this.klass.SyntaxNode;
-            address1 = new klass2(text1, this._offset, elements1, labelled1);
-            this._offset += text1.length;
-        } else {
-            address1 = null;
-        }
-        if (address1) {
-        } else {
-            this._offset = index2;
-            var index5 = this._offset;
-            var elements2 = [];
-            var labelled2 = {};
-            var text2 = "";
-            var address5 = null;
-            address5 = this.__consume__axis();
-            if (address5) {
-                elements2.push(address5);
-                text2 += address5.textValue;
-                labelled2.axis = address5;
-                var address6 = null;
-                address6 = this.__consume__node_test();
-                if (address6) {
-                    elements2.push(address6);
-                    text2 += address6.textValue;
-                    labelled2.test = address6;
+            if (elements1) {
+                this._offset = index4;
+                var klass3 = this.klass.SyntaxNode;
+                address2 = new klass3(text1, this._offset, elements1, labelled1);
+                this._offset += text1.length;
+            } else {
+                address2 = null;
+            }
+            if (address2) {
+            } else {
+                this._offset = index3;
+                var index6 = this._offset;
+                var elements2 = [];
+                var labelled2 = {};
+                var text2 = "";
+                var address5 = null;
+                var index7 = this._offset;
+                address5 = this.__consume__axis();
+                if (address5) {
+                } else {
+                    this._offset = index7;
+                    var klass4 = this.klass.SyntaxNode;
+                    address5 = new klass4("", this._offset, []);
+                    this._offset += 0;
+                }
+                if (address5) {
+                    elements2.push(address5);
+                    text2 += address5.textValue;
+                    labelled2.axis = address5;
+                    var address6 = null;
+                    address6 = this.__consume__node_test();
+                    if (address6) {
+                        elements2.push(address6);
+                        text2 += address6.textValue;
+                        labelled2.test = address6;
+                    } else {
+                        elements2 = null;
+                        this._offset = index6;
+                    }
                 } else {
                     elements2 = null;
-                    this._offset = index5;
+                    this._offset = index6;
                 }
-            } else {
-                elements2 = null;
-                this._offset = index5;
-            }
-            if (elements2) {
-                this._offset = index5;
-                var klass3 = this.klass.SyntaxNode;
-                address1 = new klass3(text2, this._offset, elements2, labelled2);
-                this._offset += text2.length;
-            } else {
-                address1 = null;
-            }
-            if (address1) {
-            } else {
-                this._offset = index2;
-            }
-        }
-        if (address1) {
-            elements0.push(address1);
-            text0 += address1.textValue;
-            labelled0.head = address1;
-            var address7 = null;
-            var remaining0 = 0;
-            var index6 = this._offset;
-            var elements3 = [];
-            var text3 = "";
-            var address8 = true;
-            while (address8) {
-                address8 = this.__consume__node_predicate();
-                if (address8) {
-                    elements3.push(address8);
-                    text3 += address8.textValue;
-                    remaining0 -= 1;
+                if (elements2) {
+                    this._offset = index6;
+                    var klass5 = this.klass.SyntaxNode;
+                    address2 = new klass5(text2, this._offset, elements2, labelled2);
+                    this._offset += text2.length;
+                } else {
+                    address2 = null;
+                }
+                if (address2) {
+                } else {
+                    this._offset = index3;
                 }
             }
-            if (remaining0 <= 0) {
-                this._offset = index6;
-                var klass4 = this.klass.SyntaxNode;
-                address7 = new klass4(text3, this._offset, elements3);
-                this._offset += text3.length;
-            } else {
-                address7 = null;
-            }
-            if (address7) {
-                elements0.push(address7);
-                text0 += address7.textValue;
-                labelled0.predicates = address7;
+            if (address2) {
+                elements0.push(address2);
+                text0 += address2.textValue;
+                labelled0.selector = address2;
+                var address7 = null;
+                var remaining0 = 0;
+                var index8 = this._offset;
+                var elements3 = [];
+                var text3 = "";
+                var address8 = true;
+                while (address8) {
+                    address8 = this.__consume__node_predicate();
+                    if (address8) {
+                        elements3.push(address8);
+                        text3 += address8.textValue;
+                        remaining0 -= 1;
+                    }
+                }
+                if (remaining0 <= 0) {
+                    this._offset = index8;
+                    var klass6 = this.klass.SyntaxNode;
+                    address7 = new klass6(text3, this._offset, elements3);
+                    this._offset += text3.length;
+                } else {
+                    address7 = null;
+                }
+                if (address7) {
+                    elements0.push(address7);
+                    text0 += address7.textValue;
+                    labelled0.predicates = address7;
+                } else {
+                    elements0 = null;
+                    this._offset = index1;
+                }
             } else {
                 elements0 = null;
                 this._offset = index1;
@@ -231,13 +246,13 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
         }
         if (elements0) {
             this._offset = index1;
-            var klass5 = null;
+            var klass7 = null;
             if (Pathology.LocationStep instanceof Function) {
-                klass5 = Pathology.LocationStep;
+                klass7 = Pathology.LocationStep;
             } else {
-                klass5 = this.klass.SyntaxNode;
+                klass7 = this.klass.SyntaxNode;
             }
-            address0 = new klass5(text0, this._offset, elements0, labelled0);
+            address0 = new klass7(text0, this._offset, elements0, labelled0);
             if (!(Pathology.LocationStep instanceof Function)) {
                 address0.extend(Pathology.LocationStep);
             }
@@ -323,16 +338,10 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
             address0 = null;
         }
         if (address0) {
-            if (!(Pathology.Axis instanceof Function)) {
-                address0.extend(Pathology.Axis);
-            }
         } else {
             this._offset = index1;
             address0 = this.__consume__axis_shorthand();
             if (address0) {
-                if (!(Pathology.Axis instanceof Function)) {
-                    address0.extend(Pathology.Axis);
-                }
             } else {
                 this._offset = index1;
             }
@@ -389,17 +398,6 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
                     if (address0) {
                     } else {
                         this._offset = index1;
-                        if (this._input.substring(this._offset, this._offset + 0) === "") {
-                            var klass4 = this.klass.SyntaxNode;
-                            address0 = new klass4("", this._offset, []);
-                            this._offset += 0;
-                        } else {
-                            address0 = null;
-                        }
-                        if (address0) {
-                        } else {
-                            this._offset = index1;
-                        }
                     }
                 }
             }
@@ -1060,15 +1058,10 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
                 if (address0) {
                 } else {
                     this._offset = index1;
-                    address0 = this.__consume__self();
+                    address0 = this.__consume__location_path();
                     if (address0) {
                     } else {
                         this._offset = index1;
-                        address0 = this.__consume__location_path();
-                        if (address0) {
-                        } else {
-                            this._offset = index1;
-                        }
                     }
                 }
             }
@@ -1646,32 +1639,6 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
             }
         }
         return this._nodeCache.string[index0] = address0;
-    },
-    __consume__self: function(input) {
-        var address0 = null;
-        var index0 = this._offset;
-        this._nodeCache.self = this._nodeCache.self || {};
-        var cached = this._nodeCache.self[index0];
-        if (cached) {
-            this._offset += cached.textValue.length;
-            return cached;
-        }
-        if (this._input.substring(this._offset, this._offset + 1) === ".") {
-            var klass0 = null;
-            if (Pathology.Self instanceof Function) {
-                klass0 = Pathology.Self;
-            } else {
-                klass0 = this.klass.SyntaxNode;
-            }
-            address0 = new klass0(".", this._offset, []);
-            if (!(Pathology.Self instanceof Function)) {
-                address0.extend(Pathology.Self);
-            }
-            this._offset += 1;
-        } else {
-            address0 = null;
-        }
-        return this._nodeCache.self[index0] = address0;
     },
     __consume__space: function(input) {
         var address0 = null;

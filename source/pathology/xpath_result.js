@@ -30,6 +30,14 @@ Pathology.XPathResult = new JS.Class('Pathology.XPathResult', {
   },
   
   makeString: function() {
+    if (this._nodes.length === 0) return '';
+    
+    var first = this._nodes[0];
+    if (first.nodeType !== XPathResult.BOOLEAN_TYPE) {
+      var result = document.evaluate('//text()', first, null, XPathResult.ANY_TYPE, null);
+      return result.makeString();
+    }
+    
     var parts = [];
     this.forEach(function(node) { parts.push(node.nodeValue) });
     return parts.join('');
