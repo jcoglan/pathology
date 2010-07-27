@@ -1050,19 +1050,14 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
         if (address0) {
         } else {
             this._offset = index1;
-            address0 = this.__consume__attribute();
+            address0 = this.__consume__string();
             if (address0) {
             } else {
                 this._offset = index1;
-                address0 = this.__consume__string();
+                address0 = this.__consume__location_path();
                 if (address0) {
                 } else {
                     this._offset = index1;
-                    address0 = this.__consume__location_path();
-                    if (address0) {
-                    } else {
-                        this._offset = index1;
-                    }
                 }
             }
         }
@@ -1295,62 +1290,6 @@ Pathology.XPath = new JS.Module("Pathology.XPath", {
             this._offset += 0;
         }
         return this._nodeCache.function_args[index0] = address0;
-    },
-    __consume__attribute: function(input) {
-        var address0 = null;
-        var index0 = this._offset;
-        this._nodeCache.attribute = this._nodeCache.attribute || {};
-        var cached = this._nodeCache.attribute[index0];
-        if (cached) {
-            this._offset += cached.textValue.length;
-            return cached;
-        }
-        var index1 = this._offset;
-        var elements0 = [];
-        var labelled0 = {};
-        var text0 = "";
-        var address1 = null;
-        if (this._input.substring(this._offset, this._offset + 1) === "@") {
-            var klass0 = this.klass.SyntaxNode;
-            address1 = new klass0("@", this._offset, []);
-            this._offset += 1;
-        } else {
-            address1 = null;
-        }
-        if (address1) {
-            elements0.push(address1);
-            text0 += address1.textValue;
-            var address2 = null;
-            address2 = this.__consume__node_name();
-            if (address2) {
-                elements0.push(address2);
-                text0 += address2.textValue;
-                labelled0.node_name = address2;
-            } else {
-                elements0 = null;
-                this._offset = index1;
-            }
-        } else {
-            elements0 = null;
-            this._offset = index1;
-        }
-        if (elements0) {
-            this._offset = index1;
-            var klass1 = null;
-            if (Pathology.Attribute instanceof Function) {
-                klass1 = Pathology.Attribute;
-            } else {
-                klass1 = this.klass.SyntaxNode;
-            }
-            address0 = new klass1(text0, this._offset, elements0, labelled0);
-            if (!(Pathology.Attribute instanceof Function)) {
-                address0.extend(Pathology.Attribute);
-            }
-            this._offset += text0.length;
-        } else {
-            address0 = null;
-        }
-        return this._nodeCache.attribute[index0] = address0;
     },
     __consume__string: function(input) {
         var address0 = null;

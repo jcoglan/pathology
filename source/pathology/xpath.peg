@@ -35,15 +35,13 @@ grammar Pathology.XPath
   atom                <- space expression:("(" in_parens:expression ")" / value) space
                          <Pathology.Atom>
   
-  value               <- function_call / attribute / string / location_path
+  value               <- function_call / string / location_path
   
   function_call       <- function_name "(" function_args ")" <Pathology.FunctionCall>
   
   function_name       <- [a-z\-]+
   
   function_args       <- (first:expression rest:("," expression)*)?
-  
-  attribute           <- "@" node_name <Pathology.Attribute>
   
   string              <- ("'" ("\\" . / [^'])* "'" / "\"" ("\\" . / [^"])* "\"")
                          <Pathology.String>

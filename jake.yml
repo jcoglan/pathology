@@ -19,7 +19,6 @@ packages:
       - pathology/xpath
       - pathology/nodes/and
       - pathology/nodes/atom
-      - pathology/nodes/attribute
       - pathology/nodes/axis
       - pathology/nodes/comparison
       - pathology/nodes/function_call

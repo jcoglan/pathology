@@ -41,6 +41,7 @@ Pathology.FunctionCall = new JS.Module('Pathology.FunctionCall', {
       },
       
       'not': function(value) {
+        if (value && value.atomize) value = value.atomize();
         return !value;
       },
       
