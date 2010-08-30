@@ -40,6 +40,10 @@ Pathology.FunctionCall = new JS.Module('Pathology.FunctionCall', {
                                 .replace(/\s+/, ' ');
       },
       
+      'name': function() {
+        return this.nodeName.toLowerCase();
+      },
+      
       'not': function(value) {
         if (value && value.atomize) value = value.atomize();
         return !value;

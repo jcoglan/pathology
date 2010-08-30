@@ -13,6 +13,12 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() {
     })
   })
   
+  describe("name()", function() {
+    it("filters by node name", function() {
+      assertNodesMatch( ["link1", "link2", "link3"], ".//*[name() = 'a']" )
+    })
+  })
+  
   describe("multiple predicates", function() {
     it("match if both conditions are true", function() {
       assertNodesMatch( ["second-para"], "//p[text() = 'Some content'][@id='second-para']" )
