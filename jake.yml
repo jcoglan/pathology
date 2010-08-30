@@ -27,4 +27,5 @@ packages:
       - pathology/nodes/node_test
       - pathology/nodes/or
       - pathology/nodes/string
+      - pathology/nodes/union
 

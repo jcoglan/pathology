@@ -1,5 +1,7 @@
 grammar Pathology.XPath
   
+  union_expression    <- head:location_path rest:(space "|" space location_path)* <Pathology.Union>
+  
   location_path       <- head:location_step rest:location_step*
                          <Pathology.LocationPath>
   
@@ -35,7 +37,7 @@ grammar Pathology.XPath
   atom                <- space expression:("(" in_parens:expression ")" / value) space
                          <Pathology.Atom>
   
-  value               <- function_call / string / location_path
+  value               <- function_call / string / union_expression
   
   function_call       <- function_name "(" function_args ")" <Pathology.FunctionCall>
   

@@ -31,10 +31,17 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() {
     })
   })
   
+  describe("union operator", function() {
+    it("returns the union of two node sets", function() {
+      assertNodesMatch( ["first-para", "second-para", "oddly-spaced", "another-p", "link1", "link2", "link3"],
+                        ".//*[./@id][self::p | self::a]" )
+    })
+  })
+  
   describe("text()", function() {
     it("filters by node text", function() {
       assertNodesMatch( ["label-male"], "//label[text() = 'Male']" )
-      assertNodesMatch( ["em"], "//*[text() = 'title']" )
+      assertNodesMatch( ["em"], ".//*[./text() = 'title']" )
     })
     
     it("returns the value of the first text node", function() {

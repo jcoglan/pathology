@@ -52,5 +52,12 @@ PathSpec = JS.Test.describe("Path selectors", function() {
       assertTextMatch( ["Male"], "//label[@for='gender-male']/text()" )
     })
   })
+  
+  describe("union operator", function() {
+    it("returns the union of two node sets", function() {
+      assertNodesMatch( ["first-para", "second-para", "oddly-spaced", "another-p", "link1", "link2", "link3"],
+                        ".//p[./@id] | .//a" )
+    })
+  })
 })
 

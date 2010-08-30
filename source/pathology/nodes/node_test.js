@@ -12,7 +12,9 @@ Pathology.NodeTest = new JS.Module('Pathology.NodeTest', {
       }
     } else {
       var tagName = this.textValue.toLowerCase();
-      if (tagName !== '*') {
+      if (tagName === '*') {
+        if (context.nodeType !== 1) return;
+      } else {
         if (!context.nodeName) return;
         if (context.nodeName.toLowerCase() !== tagName) return;
       }
