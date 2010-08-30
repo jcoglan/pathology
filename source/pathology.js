@@ -11,6 +11,13 @@ var Pathology = new JS.Module('Pathology', {
       var result = expression.evaluate(context, root);
       if (result && result.atomize) result = result.atomize();
       return result;
+    },
+    
+    array: function(list) {
+      if (!list) return [];
+      var array = [], i = list.length;
+      while (i--) array[i] = list[i];
+      return array;
     }
   }
 });

@@ -5,7 +5,19 @@ Pathology.Axis = new JS.Class('Pathology.Axis', {
   
   walk: function(context, block, scope) {
     var children   = context.childNodes,
-        attributes = context.attributes;
+        attributes = Pathology.array(context.attributes);
+    
+    if (context.checked)
+      attributes.push({ nodeName:   'checked',
+                        nodeValue:  true,
+                        nodeType:   XPathResult.STRING_TYPE
+                     });
+    
+    if (context.selected)
+      attributes.push({ nodeName:   'selected',
+                        nodeValue:  true,
+                        nodeType:   XPathResult.STRING_TYPE
+                     });
     
     switch (this.name) {
       case 'attribute':

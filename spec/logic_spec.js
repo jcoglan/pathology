@@ -70,9 +70,9 @@ LogicSpec = JS.Test.describe("Logic within predicates", function() {
   })
   
   describe("finding a select with several things selected", function() {
-    it("can use labels and the @selected attribute", function() {
+    it("uses the @selected and text() attributes across node sets", function() {
       assertNodesMatch( ["form_underwear"],
-                        ".//select[((./@id = 'Underwear' or ./@name = 'Underwear') or ./@id = //label[contains(./text(), 'Underwear')]/@for)][.//option/text() = 'Commando']" )
+                        ".//select[((./@id = 'Underwear' or ./@name = 'Underwear') or ./@id = //label[contains(./text(), 'Underwear')]/@for)][.//option[./@selected]/text() = 'Briefs'][.//option[./@selected]/text() = 'Commando']" )
     })
   })
 })
