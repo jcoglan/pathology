@@ -68,5 +68,12 @@ LogicSpec = JS.Test.describe("Logic within predicates", function() {
       assertNodesMatch( ["gender-female"], "//input[@id=//label[text()='Female']/@for]" )
     })
   })
+  
+  describe("finding a select with several things selected", function() {
+    it("can use labels and the @selected attribute", function() {
+      assertNodesMatch( ["form_underwear"],
+                        ".//select[((./@id = 'Underwear' or ./@name = 'Underwear') or ./@id = //label[contains(./text(), 'Underwear')]/@for)][.//option/text() = 'Commando']" )
+    })
+  })
 })
 
