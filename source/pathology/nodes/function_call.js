@@ -49,6 +49,10 @@ Pathology.FunctionCall = new JS.Module('Pathology.FunctionCall', {
         return !value;
       },
       
+      'string': function(value) {
+        return value.atomize().innerText;
+      },
+      
       'text': function() {
         return document.evaluate('/text()', this, null, XPathResult.ANY_TYPE, null);
       }

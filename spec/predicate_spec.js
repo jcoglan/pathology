@@ -44,6 +44,12 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() { with(this) {
     }})
   }})
   
+  describe("string()", function() { with(this) {
+    it("finds the input with the given string content", function() { with(this) {
+      assertNodesMatch( ["second-para"], ".//*[string(.) = 'Some content']" )
+    }})
+  }})
+  
   describe("text()", function() { with(this) {
     it("filters by node text", function() { with(this) {
       assertNodesMatch( ["label-male"], "//label[text() = 'Male']" )
