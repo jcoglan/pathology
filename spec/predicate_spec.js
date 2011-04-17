@@ -1,88 +1,88 @@
-PredicateSpec = JS.Test.describe("Predicate blocks", function() {
+PredicateSpec = JS.Test.describe("Predicate blocks", function() { with(this) {
   include(Pathology.SpecHelper)
   
-  describe("with an attribute with no value", function() {
-    it("matches elements with that attribute", function() {
+  describe("with an attribute with no value", function() { with(this) {
+    it("matches elements with that attribute", function() { with(this) {
       assertNodesMatch( ["gender-female"], "//input[@checked]" )
-    })
-  })
+    }})
+  }})
   
-  describe("with a negated attribute with no value", function() {
-    it("matches elements without that attribute", function() {
+  describe("with a negated attribute with no value", function() { with(this) {
+    it("matches elements without that attribute", function() { with(this) {
       assertNodesMatch( ["gender-male"], "//fieldset/input[not(@checked)]" )
-    })
-  })
+    }})
+  }})
   
-  describe("name()", function() {
-    it("filters by node name", function() {
+  describe("name()", function() { with(this) {
+    it("filters by node name", function() { with(this) {
       assertNodesMatch( ["link1", "link2", "link3"], ".//*[name() = 'a']" )
-    })
-  })
+    }})
+  }})
   
-  describe("multiple predicates", function() {
-    it("match if both conditions are true", function() {
+  describe("multiple predicates", function() { with(this) {
+    it("match if both conditions are true", function() { with(this) {
       assertNodesMatch( ["second-para"], "//p[text() = 'Some content'][@id='second-para']" )
-    })
+    }})
     
-    it("does not match if the first condition is false", function() {
+    it("does not match if the first condition is false", function() { with(this) {
       assertNodesMatch( [], "//p[text() = 'Some'][@id='second-para']" )
-    })
+    }})
     
-    it("does not match if the second condition is false", function() {
+    it("does not match if the second condition is false", function() { with(this) {
       assertNodesMatch( [], "//p[text() = 'Some content'][@id='para']" )
-    })
+    }})
     
-    it("does not match if both conditions are false", function() {
+    it("does not match if both conditions are false", function() { with(this) {
       assertNodesMatch( [], "//p[text() = 'content'][@id='para']" )
-    })
-  })
+    }})
+  }})
   
-  describe("union operator", function() {
-    it("returns the union of two node sets", function() {
+  describe("union operator", function() { with(this) {
+    it("returns the union of two node sets", function() { with(this) {
       assertNodesMatch( ["first-para", "second-para", "oddly-spaced", "another-p", "link1", "link2", "link3"],
                         ".//*[./@id][self::p | self::a]" )
-    })
-  })
+    }})
+  }})
   
-  describe("text()", function() {
-    it("filters by node text", function() {
+  describe("text()", function() { with(this) {
+    it("filters by node text", function() { with(this) {
       assertNodesMatch( ["label-male"], "//label[text() = 'Male']" )
       assertNodesMatch( ["em"], ".//*[./text() = 'title']" )
-    })
+    }})
     
-    it("returns the value of the first text node", function() {
+    it("returns the value of the first text node", function() { with(this) {
       assertNodesMatch( ["first-heading"], "//h1[text() = 'The ']" )
-    })
+    }})
     
-    it("does not return the entire text of the node", function() {
+    it("does not return the entire text of the node", function() { with(this) {
       assertNodesMatch( [], "//h1[text() = 'The title']" )
-    })
-  })
+    }})
+  }})
   
-  describe("concat()", function() {
-    it("joins strings together", function() {
+  describe("concat()", function() { with(this) {
+    it("joins strings together", function() { with(this) {
       assertNodesMatch( ["first-heading"], "//h1[text() = concat('T',\"he\",' ')]" )
-    })
-  })
+    }})
+  }})
   
-  describe("contains()", function() {
-    it("matches if the first piece of text contains the second", function() {
+  describe("contains()", function() { with(this) {
+    it("matches if the first piece of text contains the second", function() { with(this) {
       assertNodesMatch( ["label-male", "label-female"], "//label[contains(text(),'ale')]" )
-    })
+    }})
     
-    it("allows a . to get the node's full text", function() {
+    it("allows a . to get the node's full text", function() { with(this) {
       assertNodesMatch( ["label-male", "label-female"], "//label[contains(.,'ale')]" )
       assertNodesMatch( ["first-heading"],"//h1[contains(.,'The title')]" )
-    })
+    }})
     
-    it("does not match if the first piece of text does not contain the second", function() {
+    it("does not match if the first piece of text does not contain the second", function() { with(this) {
       assertNodesMatch( [], "//label[contains(text(),'Fail')]" )
       assertNodesMatch( [], "//h1[contains(text(),'The title')]" )
-    })
+    }})
     
-    it("matches if normalize-space is used", function() {
+    it("matches if normalize-space is used", function() { with(this) {
       assertNodesMatch( ["oddly-spaced"], "//p[contains(normalize-space(.),'Text with double spacing')]" )
-    })
-  })
-})
+    }})
+  }})
+}})
 
