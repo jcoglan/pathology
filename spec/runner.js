@@ -1,15 +1,14 @@
 if (typeof CWD === 'undefined') CWD = '.'
+JS.cacheBust = true
 
 JS.Packages(function() { with(this) {
-    file(CWD + '/build/pathology-min.js')
+    file(CWD + '/build/pathology.js')
         .provides('Pathology', 'document.evaluate')
-        .requires('JS.Class', 'JS.Module');
     
     autoload(/^(.*)Spec$/, {from: CWD + '/spec'})
 }})
 
 JS.require('JS.Test', 'Pathology', function() {
-    
     Pathology.SpecHelper = new JS.Module({
       include: JS.Test.Helpers,
       

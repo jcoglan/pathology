@@ -1,26 +1,24 @@
-var Pathology = new JS.Module('Pathology', {
-  extend: {
-    evaluate: function(xpathExpression, context, nsResolver, resultType, result) {
-      result = result || new Pathology.XPathResult(resultType);
-      var expression = Pathology.XPathParser.parse(xpathExpression);
-      expression.evaluate(context, context, resultType, result);
-      return result;
-    },
-    
-    atomize: function(expression, context, root) {
-      var result = expression.evaluate(context, root);
-      if (result && result.atomize) result = result.atomize();
-      return result;
-    },
-    
-    array: function(list) {
-      if (!list) return [];
-      var array = [], i = list.length;
-      while (i--) array[i] = list[i];
-      return array;
-    }
+var Pathology = {
+  evaluate: function(xpathExpression, context, nsResolver, resultType, result) {
+    result = result || new Pathology.XPathResult(resultType);
+    var expression = Pathology.XPathParser.parse(xpathExpression);
+    expression.evaluate(context, context, resultType, result);
+    return result;
+  },
+  
+  atomize: function(expression, context, root) {
+    var result = expression.evaluate(context, root);
+    if (result && result.atomize) result = result.atomize();
+    return result;
+  },
+  
+  array: function(list) {
+    if (!list) return [];
+    var array = [], i = list.length;
+    while (i--) array[i] = list[i];
+    return array;
   }
-});
+};
 
 if (typeof XPathResult === 'undefined') {
   XPathResult = {
