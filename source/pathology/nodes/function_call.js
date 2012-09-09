@@ -25,6 +25,7 @@ Pathology.XPathParser.FunctionCall = {
     },
     
     'contains': function(haystack, needle) {
+      console.log('contains', arguments);
       if (!haystack) return false;
       if (haystack.makeString) haystack = haystack.makeString();
       
@@ -36,7 +37,7 @@ Pathology.XPathParser.FunctionCall = {
       
       return string.toString().replace(/^\s*/g, '')
                               .replace(/\s*$/g, '')
-                              .replace(/\s+/, ' ');
+                              .replace(/\s+/g, ' ');
     },
     
     'name': function() {
