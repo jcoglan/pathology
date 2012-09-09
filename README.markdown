@@ -15,8 +15,8 @@ remain so. The current aim is to implement just enough to run typical
 
 [1]: http://github.com/jcoglan/terminus
 [2]: http://github.com/jnicklas/capybara
-[3]: http://github.com/jcoglan/canopy
-[4]: http://cukes.info
+[3]: http://canopy.jcoglan.com/
+[4]: http://cukes.info/
 
 
 ## Building the library
