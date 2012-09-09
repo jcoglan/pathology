@@ -25,7 +25,6 @@ Pathology.XPathParser.FunctionCall = {
     },
     
     'contains': function(haystack, needle) {
-      console.log('contains', arguments);
       if (!haystack) return false;
       if (haystack.makeString) haystack = haystack.makeString();
       
