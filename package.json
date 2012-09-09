@@ -1,0 +1,4 @@
+{ "name":             "pathology"
+, "version":          "0.1.0"
+, "devDependencies":  {"canopy":"", "jsclass":""}
+}
