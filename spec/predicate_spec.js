@@ -13,6 +13,16 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() { with(this) {
     }})
   }})
   
+  describe("for string attributes", function() { with(this) {
+    it("considers an empty attribute to be true", function() { with(this) {
+      assertNodesMatch( ["first-empty", "second-empty"], "//div[@class='section']/*[@class]" )
+    }})
+    
+    it("considers a missing attribute to be false", function() { with(this) {
+      assertNodesMatch( ["first-heading", "second-para", "oddly-spaced"], "//div[@class='section']/*[not(@class)]" )
+    }})
+  }})
+  
   describe("name()", function() { with(this) {
     it("filters by node name", function() { with(this) {
       assertNodesMatch( ["link1", "link2", "link3"], ".//*[name() = 'a']" )
