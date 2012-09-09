@@ -1,4 +1,4 @@
-Pathology.NodeTest = new JS.Module('Pathology.NodeTest', {
+Pathology.XPathParser.NodeTest = {
   evaluate: function(context, predicates, root, resultType, result) {
     if (this.condition_name) {
       switch (this.condition_name.textValue) {
@@ -28,5 +28,5 @@ Pathology.NodeTest = new JS.Module('Pathology.NodeTest', {
     
     if (viable) result.push(context);
   }
-});
+};
 

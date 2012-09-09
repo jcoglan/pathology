@@ -1,4 +1,4 @@
-Pathology.Comparison = new JS.Module('Pathology.Comparison', {
+Pathology.XPathParser.Comparison = {
   evaluate: function(context, root) {
     // TODO make this symmetric
     var comparator = this.comparator.textValue,
@@ -22,5 +22,5 @@ Pathology.Comparison = new JS.Module('Pathology.Comparison', {
       }
     }
   }
-});
+};
 

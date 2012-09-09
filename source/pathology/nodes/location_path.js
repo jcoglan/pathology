@@ -1,4 +1,4 @@
-Pathology.LocationPath = new JS.Module('Pathology.LocationPath', {
+Pathology.XPathParser.LocationPath = {
   eachStep: function(block, scope) {
     block.call(scope, this.head);
     this.rest.forEach(block, scope);
@@ -24,5 +24,5 @@ Pathology.LocationPath = new JS.Module('Pathology.LocationPath', {
     
     return result;
   }
-});
+};
 

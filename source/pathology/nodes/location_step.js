@@ -1,4 +1,4 @@
-Pathology.LocationStep = new JS.Module('Pathology.LocationStep', {
+Pathology.XPathParser.LocationStep = {
   isRelative: function() {
     return this.elements[0].textValue !== '/';
   },
@@ -12,5 +12,5 @@ Pathology.LocationStep = new JS.Module('Pathology.LocationStep', {
       test.evaluate(node, this.predicates, root, resultType, result);
     }, this);
   }
-});
+};
 

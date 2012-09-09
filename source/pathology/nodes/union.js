@@ -1,4 +1,4 @@
-Pathology.Union = new JS.Module('Pathology.Union', {
+Pathology.XPathParser.Union = {
   eachPath: function(block, scope) {
     block.call(scope, this.head);
     this.rest.forEach(function(section) {
@@ -16,5 +16,5 @@ Pathology.Union = new JS.Module('Pathology.Union', {
     
     return result;
   }
-});
+};
 

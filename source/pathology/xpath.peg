@@ -1,19 +1,18 @@
 grammar Pathology.XPath
   
-  union_expression    <- head:location_path rest:(space "|" space location_path)* <Pathology.Union>
+  union_expression    <- head:location_path rest:(space "|" space location_path)* <Union>
   
-  location_path       <- head:location_step rest:location_step*
-                         <Pathology.LocationPath>
+  location_path       <- head:location_step rest:location_step* <LocationPath>
   
   location_step       <- "/"? selector:(axis test:node_test? / axis:axis? test:node_test)
                          predicates:node_predicate*
-                         <Pathology.LocationStep>
+                         <LocationStep>
   
   axis                <- axis_name:[a-z\-]+ "::" / axis_shorthand
   
   axis_shorthand      <- "@" / ".." / "." / "/"
   
-  node_test           <- (node_condition / node_name / "*") <Pathology.NodeTest>
+  node_test           <- (node_condition / node_name / "*") <NodeTest>
   
   node_condition      <- condition_name:[a-z\-]+ "()"
   
@@ -23,30 +22,28 @@ grammar Pathology.XPath
   
   expression          <- or_expression / and_expression / comparison / atom
   
-  or_expression       <- left:and_expression "or" right:or_expression <Pathology.Or>
+  or_expression       <- left:and_expression "or" right:or_expression <Or>
                        / and_expression
   
-  and_expression      <- left:comparison "and" right:and_expression <Pathology.And>
+  and_expression      <- left:comparison "and" right:and_expression <And>
                        / comparison
   
-  comparison          <- left:atom comparator right:comparison <Pathology.Comparison>
+  comparison          <- left:atom comparator right:comparison <Comparison>
                        / atom
   
   comparator          <- "!=" / "="
   
-  atom                <- space expression:("(" in_parens:expression ")" / value) space
-                         <Pathology.Atom>
+  atom                <- space expression:("(" in_parens:expression ")" / value) space <Atom>
   
   value               <- function_call / string / union_expression
   
-  function_call       <- function_name "(" function_args ")" <Pathology.FunctionCall>
+  function_call       <- function_name "(" function_args ")" <FunctionCall>
   
   function_name       <- [a-z\-]+
   
   function_args       <- (first:expression rest:("," expression)*)?
   
-  string              <- ("'" ("\\" . / [^'])* "'" / "\"" ("\\" . / [^"])* "\"")
-                         <Pathology.String>
+  string              <- ("'" ("\\" . / [^'])* "'" / "\"" ("\\" . / [^"])* "\"") <String>
   
   space               <- " "*
 
