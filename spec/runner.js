@@ -2,7 +2,7 @@ if (typeof CWD === 'undefined') CWD = '.'
 JS.cacheBust = true
 
 JS.Packages(function() { with(this) {
-    file(CWD + '/build/pathology.js')
+    file(CWD + '/build/pathology-min.js')
         .provides('Pathology', 'document.evaluate')
     
     autoload(/^(.*)Spec$/, {from: CWD + '/spec'})

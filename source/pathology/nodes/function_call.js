@@ -45,6 +45,7 @@ Pathology.XPathParser.FunctionCall = {
     
     'not': function(value) {
       if (value && value.atomize) value = value.atomize();
+      if (typeof value === 'string') return false;
       return !value;
     },
     
