@@ -79,6 +79,10 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() { with(this) {
     it("joins strings together", function() { with(this) {
       assertNodesMatch( ["first-heading"], "//h1[text() = concat('T',\"he\",' ')]" )
     }})
+    
+    it("joins attribute values", function() { with(this) {
+      assertNodesMatch( ["link1"], ".//a[contains(concat(' ', @class, ' '), ' visibility ')]" )
+    }})
   }})
   
   describe("contains()", function() { with(this) {
