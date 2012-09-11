@@ -52,6 +52,19 @@
       <input type="hidden" id="hidden-field">
       <input type="checkbox" id="checkbox-field">
       <input type="radio" id="radio-field">
+      
+      <label for="form_first_name">
+        First Name
+        <input type="text" name="form[first_name]" value="John" id="form_first_name">
+      </label>
+      <label for="form_last_name">Last Name</label>
+      <input type="text" name="form[last_name]" value="Smith" id="form_last_name">
+      
+      <label for="form_name_explanation">Explanation of Name</label>
+      <textarea name="form[name_explanation]" id="form_name_explanation"></textarea>
+      
+      <label for="form_name">Name</label>
+      <input type="text" name="form[name]" value="John Smith" id="form_name">
     </form>
   </body>
 </html>

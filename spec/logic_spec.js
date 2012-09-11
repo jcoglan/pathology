@@ -57,7 +57,7 @@ LogicSpec = JS.Test.describe("Logic within predicates", function() { with(this) 
     
     describe("complex and query using attributes", function() { with(this) {
       it("matches the input for which all the conditions are true", function() { with(this) {
-        assertNodesMatch( ["text-input", "text-field"], "//form/input[not(@type) or (@type!='radio' and @type!='checkbox' and @type!='hidden')]" )
+        assertNodesMatch( ["text-input", "text-field", "form_last_name", "form_name"], "//form/input[not(@type) or (@type!='radio' and @type!='checkbox' and @type!='hidden')]" )
       }})
     }})
   }})
@@ -73,6 +73,13 @@ LogicSpec = JS.Test.describe("Logic within predicates", function() { with(this) 
     it("uses the @selected and text() attributes across node sets", function() { with(this) {
       assertNodesMatch( ["form_underwear"],
                         ".//select[((./@id = 'Underwear' or ./@name = 'Underwear') or ./@id = //label[contains(./text(), 'Underwear')]/@for)][.//option[./@selected]/text() = 'Briefs'][.//option[./@selected]/text() = 'Commando']" )
+    }})
+  }})
+  
+  describe("finding inputs by name", function() { with(this) {
+    it("uses a comparator with a multi-valued RHS", function() { with(this) {
+      assertNodesMatch( ["form_first_name", "form_last_name", "form_name_explanation", "form_name"],
+                        ".//*[self::input | self::textarea][((./@id = 'Name' or ./@name = 'Name') or ./@id = //label[contains(normalize-space(string(.)), 'Name')]/@for)] | .//label[contains(normalize-space(string(.)), 'Name')]//.//*[self::input | self::textarea]" )
     }})
   }})
 }})

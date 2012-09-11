@@ -6,6 +6,7 @@ Pathology.XPathResult = function(resultType) {
 
 Pathology.XPathResult.prototype.push = function(node) {
   if (this._type !== 0 && node.nodeType !== this._type) return;
+  if (this._nodes.indexOf(node) >= 0) return;
   this._nodes.push(node);
 };
 
@@ -22,10 +23,16 @@ Pathology.XPathResult.prototype.forEach = function(block, scope) {
 };
 
 Pathology.XPathResult.prototype.atomize = function() {
-  var node = this._nodes[0];
-  if (!node) return null;
-  if (node.nodeValue === undefined || node.nodeValue === null) return node;
-  return node.nodeValue;
+  if (this._nodes.length === 0) return null;
+  if (this._nodes.length === 1) {
+    var node = this._nodes[0];
+    if (node.nodeValue === undefined || node.nodeValue === null) return node;
+    return node.nodeValue;
+  } else {
+    var nodes = [];
+    for (var i = 0, n = this._nodes.length; i < n; i++) nodes.push(this._nodes[i].nodeValue);
+    return nodes;
+  }
 };
 
 Pathology.XPathResult.prototype.makeString = function() {
