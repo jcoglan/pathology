@@ -123,5 +123,12 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() { with(this) {
       assertNodesMatch( ["oddly-spaced"], "//p[contains(normalize-space(.),'Text with double spacing')]" )
     }})
   }})
+  
+  describe("following-sibling", function() { with(this) {
+    it("finds table rows", function() { with(this) {
+      assertNodesMatch( ["random_table"],
+                        ".//table[contains(.//caption, 'Ransom')][.//tr[./*[self::td | self::th][normalize-space(string(.)) = '2007']/following-sibling::*[1]/self::*[self::td | self::th][normalize-space(string(.)) = '$300']/following-sibling::*[1]/self::*[self::td | self::th][normalize-space(string(.)) = '$100']]]" )
+    }})
+  }})
 }})
 

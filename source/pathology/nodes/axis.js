@@ -4,7 +4,8 @@ Pathology.Axis = function(name) {
 
 Pathology.Axis.prototype.walk = function(context, block, scope) {
   var children   = context.childNodes,
-      attributes = Pathology.array(context.attributes);
+      attributes = Pathology.array(context.attributes),
+      sibling;
   
   if (context.checked)
     attributes.push({ nodeName:   'checked',
@@ -25,12 +26,10 @@ Pathology.Axis.prototype.walk = function(context, block, scope) {
       }
       break;
     
-    case 'parent':
-      block.call(scope, context.parentNode);
-      break;
-    
-    case 'self':
-      block.call(scope, context);
+    case 'child':
+      for (var i = 0, n = children.length; i < n; i++) {
+        block.call(scope, children[i]);
+      }
       break;
     
     case 'descendant-or-self':
@@ -40,10 +39,20 @@ Pathology.Axis.prototype.walk = function(context, block, scope) {
       }
       break;
     
-    case 'child':
-      for (var i = 0, n = children.length; i < n; i++) {
-        block.call(scope, children[i]);
+    case 'following-sibling':
+      sibling = context.nextSibling;
+      while (sibling) {
+        block.call(scope, sibling);
+        sibling = sibling.nextSibling;
       }
+      break;
+    
+    case 'parent':
+      block.call(scope, context.parentNode);
+      break;
+    
+    case 'self':
+      block.call(scope, context);
       break;
   }
 };
