@@ -21,11 +21,12 @@ Pathology.XPathParser.NodeTest = {
       if (subscript.integer.evaluate() !== unpredicated.length) return;
     }
     
-    var viable = true;
-    predicates.forEach(function(predicate) {
+    var viable = true, predicate;
+    for (var i = 0, n = predicates.elements.length; i < n; i++) {
+      predicate = predicates.elements[i];
       viable = viable && Pathology.atomize(predicate.expression, context, root);
       if (typeof viable === 'string') viable = true;
-    });
+    }
     
     if (viable) result.push(context);
   }

@@ -1,13 +1,14 @@
 Pathology.XPathParser.FunctionCall = {
   getArguments: function(context, root) {
-    var args = [];
+    var args = [],
+        rest = this.function_args.rest;
+    
     if (this.function_args.first && this.function_args.first.evaluate) {
       args.push(this.function_args.first.evaluate(context, root));
     }
-    if (this.function_args.rest) {
-      this.function_args.rest.forEach(function(arg) {
-        args.push(arg.expression.evaluate(context, root));
-      });
+    if (rest) {
+      for (var i = 0, n = rest.elements.length; i < n; i++)
+        args.push(rest.elements[i].expression.evaluate(context, root));
     }
     return args;
   },

@@ -17,11 +17,6 @@ Pathology.XPathResult.prototype.iterateNext = function() {
   return node;
 };
 
-Pathology.XPathResult.prototype.forEach = function(block, scope) {
-  for (var i = 0, n = this._nodes.length; i < n; i++)
-    block.call(scope, this._nodes[i], i);
-};
-
 Pathology.XPathResult.prototype.atomize = function() {
   if (this._nodes.length === 0) return null;
   if (this._nodes.length === 1) {
@@ -45,7 +40,8 @@ Pathology.XPathResult.prototype.makeString = function() {
     
     case XPathResult.BOOLEAN_TYPE:
       var parts = [];
-      this.forEach(function(node) { parts.push(node.nodeValue) });
+      for (var i = 0, n = this._nodes.length; i < n; i++)
+        parts.push(this._nodes[i].nodeValue);
       return parts.join('');
     
     default:
