@@ -3,7 +3,7 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() { with(this) {
   
   describe("with an attribute with no value", function() { with(this) {
     it("matches elements with that attribute", function() { with(this) {
-      assertNodesMatch( ["gender-female"], "//input[@checked]" )
+      assertNodesMatch( ["form_pets_dog", "form_pets_hamster", "gender-female"], "//input[@checked]" )
     }})
   }})
   

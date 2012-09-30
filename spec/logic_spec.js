@@ -81,6 +81,12 @@ LogicSpec = JS.Test.describe("Logic within predicates", function() { with(this) 
       assertNodesMatch( ["form_first_name", "form_last_name", "form_name_explanation", "form_name"],
                         ".//*[self::input | self::textarea][((./@id = 'Name' or ./@name = 'Name') or ./@id = //label[contains(normalize-space(string(.)), 'Name')]/@for)] | .//label[contains(normalize-space(string(.)), 'Name')]//.//*[self::input | self::textarea]" )
     }})
+
+    it("should not match too many nodes", function() { with(this) {
+      assertNodesMatch( [], "//label[contains(normalize-space(string(.)), 'form_pets_cat')]" )
+      assertNodesMatch( ["form_pets_cat"],
+                        ".//*[self::input | self::textarea | self::select][((./@id = 'form_pets_cat' or ./@name = 'form_pets_cat') or ./@id = //label[contains(normalize-space(string(.)), 'form_pets_cat')]/@for)]" )
+    }})
   }})
 }})
 
