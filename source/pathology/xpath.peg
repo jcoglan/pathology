@@ -5,6 +5,7 @@ grammar Pathology.XPath
   location_path       <- head:location_step rest:location_step* <LocationPath>
   
   location_step       <- "/"? selector:(axis test:node_test? / axis:axis? test:node_test)
+                         subscript:("[" space integer space "]")?
                          predicates:node_predicate*
                          <LocationStep>
   
@@ -42,6 +43,8 @@ grammar Pathology.XPath
   function_name       <- [a-z\-]+
   
   function_args       <- (first:expression rest:("," expression)*)?
+  
+  integer             <- [1-9] [0-9]* <Integer>
   
   string              <- ("'" ("\\" . / [^'])* "'" / "\"" ("\\" . / [^"])* "\"") <String>
   

@@ -1,5 +1,5 @@
 Pathology.XPathParser.NodeTest = {
-  evaluate: function(context, predicates, root, resultType, result) {
+  evaluate: function(context, subscript, predicates, root, resultType, unpredicated, result) {
     var name = this.condition_name;
     if (name && name.textValue === 'node') {
       // NOOP
@@ -13,6 +13,12 @@ Pathology.XPathParser.NodeTest = {
         if (!context.nodeName) return;
         if (context.nodeName.toLowerCase() !== tagName) return;
       }
+    }
+    
+    unpredicated.push(context);
+    
+    if (subscript.integer) {
+      if (subscript.integer.evaluate() !== unpredicated.length) return;
     }
     
     var viable = true;

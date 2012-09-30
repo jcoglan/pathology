@@ -33,9 +33,18 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() { with(this) {
     }})
   }})
   
+  describe("selection by index", function() { with(this) {
+    it("finds nodes using a 1-based index", function() { with(this) {
+      assertNodesMatch( ["link1"], ".//form//a[1]" )
+      assertNodesMatch( ["link2"], ".//form//a[2]" )
+      assertNodesMatch( ["link4"], ".//form//a[4][contains(text(), 'hey')]" )
+      assertNodesMatch( [], ".//form//a[3][contains(text(), 'hey')]" )
+    }})
+  }})
+  
   describe("name()", function() { with(this) {
     it("filters by node name", function() { with(this) {
-      assertNodesMatch( ["link1", "link2", "link3"], ".//*[name() = 'a']" )
+      assertNodesMatch( ["link1", "link2", "link3", "link4"], ".//*[name() = 'a']" )
     }})
   }})
   
@@ -59,7 +68,7 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() { with(this) {
   
   describe("union operator", function() { with(this) {
     it("returns the union of two node sets", function() { with(this) {
-      assertNodesMatch( ["first-para", "second-para", "oddly-spaced", "another-p", "link1", "link2", "link3"],
+      assertNodesMatch( ["first-para", "second-para", "oddly-spaced", "another-p", "link1", "link2", "link3", "link4"],
                         ".//*[./@id][self::p | self::a]" )
     }})
   }})

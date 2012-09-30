@@ -55,7 +55,7 @@ PathSpec = JS.Test.describe("Path selectors", function() { with(this) {
   
   describe("union operator", function() { with(this) {
     it("returns the union of two node sets", function() { with(this) {
-      assertNodesMatch( ["first-para", "second-para", "oddly-spaced", "another-p", "link1", "link2", "link3"],
+      assertNodesMatch( ["first-para", "second-para", "oddly-spaced", "another-p", "link1", "link2", "link3", "link4"],
                         ".//p[./@id] | .//a" )
     }})
   }})

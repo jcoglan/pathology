@@ -27,6 +27,7 @@ packages:
       - pathology/nodes/location_step
       - pathology/nodes/node_test
       - pathology/nodes/or
+      - pathology/nodes/integer
       - pathology/nodes/string
       - pathology/nodes/union
 
