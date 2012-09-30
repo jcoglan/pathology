@@ -9,6 +9,8 @@ JS.Packages(function() { with(this) {
 }})
 
 JS.require('JS.Test', 'Pathology', function() {
+    // document.evaluate = function() { return Pathology.evaluate.apply(Pathology, arguments) };
+    
     Pathology.SpecHelper = new JS.Module({
       include: JS.Test.Helpers,
       

@@ -23,6 +23,16 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() { with(this) {
     }})
   }})
   
+  describe("for child node values", function() { with(this) {
+    it("matches on an option element's text", function() { with(this) {
+      assertNodesMatch( ["form_underwear"], ".//select[.//option = 'Boxers']" )
+    }})
+    
+    it("matches on an paragraph's text", function() { with(this) {
+      assertNodesMatch( ["section-div"], ".//div[.//p = 'Some content']" )
+    }})
+  }})
+  
   describe("name()", function() { with(this) {
     it("filters by node name", function() { with(this) {
       assertNodesMatch( ["link1", "link2", "link3"], ".//*[name() = 'a']" )
