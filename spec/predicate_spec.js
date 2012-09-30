@@ -38,7 +38,8 @@ PredicateSpec = JS.Test.describe("Predicate blocks", function() { with(this) {
       assertNodesMatch( ["link1"], ".//form//a[1]" )
       assertNodesMatch( ["link2"], ".//form//a[2]" )
       assertNodesMatch( ["link4"], ".//form//a[4][contains(text(), 'hey')]" )
-      assertNodesMatch( [], ".//form//a[3][contains(text(), 'hey')]" )
+      assertNodesMatch( [],        ".//form//a[3][contains(text(), 'hey')]" )
+      assertNodesMatch( ["link4"], ".//form//a[contains(text(), 'hey')][3]" )
     }})
   }})
   

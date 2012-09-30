@@ -4,13 +4,13 @@ Pathology.XPathParser.LocationStep = {
   },
   
   evaluate: function(context, root, resultType, result) {
-    var axis = this.selector.axis,
-        test = this.selector.test,
-        unpredicated = [];
+    var axis   = this.selector.axis,
+        test   = this.selector.test,
+        levels = [[]];
     
-    Pathology.Axis.fromAST(axis).walk(context, function(node, i) {
+    Pathology.Axis.fromAST(axis).walk(context, function(node) {
       if (!test || !test.evaluate) return result.push(node);
-      test.evaluate(node, this.subscript, this.predicates, root, resultType, unpredicated, result);
+      test.evaluate(node, this.predicates, root, resultType, levels, result);
     }, this);
   }
 };

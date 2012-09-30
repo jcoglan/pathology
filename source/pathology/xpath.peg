@@ -5,7 +5,6 @@ grammar Pathology.XPath
   location_path       <- head:location_step rest:location_step* <LocationPath>
   
   location_step       <- "/"? selector:(axis test:node_test? / axis:axis? test:node_test)
-                         subscript:("[" space integer space "]")?
                          predicates:node_predicate*
                          <LocationStep>
   
@@ -13,13 +12,15 @@ grammar Pathology.XPath
   
   axis_shorthand      <- "@" / ".." / "." / "/"
   
-  node_test           <- (node_condition / node_name / "*") <NodeTest>
+  node_test           <- (node_condition / node_name / "*") subscript:subscript? <NodeTest>
   
   node_condition      <- condition_name:[a-z\-]+ "()"
   
   node_name           <- [A-Za-z0-9\-]+
   
-  node_predicate      <- "[" expression "]"
+  subscript           <- "[" space integer space "]"
+  
+  node_predicate      <- "[" expression "]" subscript:subscript?
   
   expression          <- or_expression / and_expression / comparison / atom
   
