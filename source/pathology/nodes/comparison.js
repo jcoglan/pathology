@@ -14,7 +14,7 @@ Pathology.XPathParser.Comparison = {
             viable = viable || (array ? right.indexOf(node.nodeValue) >= 0 : (node.nodeValue == right || node.innerHTML == right));
             break;
           case '!=':
-            viable = viable || (array ? right.indexOf(node.nodeValue) < 0 : node.nodeValue != right);
+            viable = viable || (array ? right.indexOf(node.nodeValue) < 0 : (node.nodeValue != right && node.innerHTML != right));
             break;
         }
       });
@@ -22,8 +22,8 @@ Pathology.XPathParser.Comparison = {
     
     } else {
       switch (comparator) {
-        case '=':   return right instanceof Array ? right.indexOf(left.nodeValue) >= 0 : left == right;
-        case '!=':  return right instanceof Array ? right.indexOf(node.nodeValue) <  0 : left != right;
+        case '=':   return array ? right.indexOf(left.nodeValue) >= 0 : left == right;
+        case '!=':  return array ? right.indexOf(node.nodeValue) <  0 : left != right;
       }
     }
   }
