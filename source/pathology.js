@@ -17,6 +17,14 @@ var Pathology = {
     var array = [], i = list.length;
     while (i--) array[i] = list[i];
     return array;
+  },
+  
+  indexOf: function(list, item) {
+    if (list.indexOf) return list.indexOf(item);
+    for (var i = 0, n = list.length; i < n; i++) {
+      if (list[i] === item) return i;
+    }
+    return -1;
   }
 };
 

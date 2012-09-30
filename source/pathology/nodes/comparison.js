@@ -12,17 +12,17 @@ Pathology.XPathParser.Comparison = {
       for (var i = 0, n = left._nodes.length; i < n; i++) {
         node = left._nodes[i];
         if (comparator === '=') {
-          viable = viable || (array ? right.indexOf(node.nodeValue) >= 0 : (node.nodeValue == right || node.innerHTML == right));
+          viable = viable || (array ? Pathology.indexOf(right, node.nodeValue) >= 0 : (node.nodeValue == right || node.innerHTML == right));
         } else if (comparator === '!=') {
-          viable = viable || (array ? right.indexOf(node.nodeValue) < 0 : (node.nodeValue != right && node.innerHTML != right));
+          viable = viable || (array ? Pathology.indexOf(right, node.nodeValue) < 0 : (node.nodeValue != right && node.innerHTML != right));
         }
       }
       return viable;
     
     } else {
       switch (comparator) {
-        case '=':   return array ? right.indexOf(left.nodeValue) >= 0 : left == right;
-        case '!=':  return array ? right.indexOf(node.nodeValue) <  0 : left != right;
+        case '=':   return array ? Pathology.indexOf(right, left.nodeValue) >= 0 : left == right;
+        case '!=':  return array ? Pathology.indexOf(right, node.nodeValue) <  0 : left != right;
       }
     }
   }

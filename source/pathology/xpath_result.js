@@ -6,7 +6,7 @@ Pathology.XPathResult = function(resultType) {
 
 Pathology.XPathResult.prototype.push = function(node) {
   if (this._type !== 0 && node.nodeType !== this._type) return;
-  if (this._nodes.indexOf(node) >= 0) return;
+  if (Pathology.indexOf(this._nodes, node) >= 0) return;
   this._nodes.push(node);
 };
 
