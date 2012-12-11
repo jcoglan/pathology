@@ -1,25 +1,26 @@
 # Pathology - remedial XPath engine for Internet Explorer
 
-I'm writing [Terminus][1], a [Capybara][2] driver in client-side JavaScript.
-Capybara uses XPath to select elements. Most browsers support the
-`document.evaluate()` method for querying the DOM with XPath. Internet Explorer,
-predictably, does not. I looked all over. Nothing can parse the almost trivial
-queries that Capybara spits out.
+I'm writing [Terminus][1], a [Capybara][2] driver for real browsers. Capybara
+uses XPath to select elements. Most browsers support the `document.evaluate()`
+method for querying the DOM with XPath. Some browsers (Internet Explorer,
+Android) do not.
 
 So here we are.
 
-The XPath parser is based on [Canopy][3], which I basically wrote solely to
-support this project. The interpreter is slow and incomplete and will likely
-remain so. The current aim is to implement just enough to run typical
-[Cucumber][4] tests in the browser.
+Pathology provides an ad-hoc, informally specified, bug-ridden, slow
+implementation of half of `document.evaluate()`. It works well enough to run the
+entire Capybara test suite on my Android phone. It will likely remain incomplete
+because frankly life is too short.
 
-[1]: http://github.com/jcoglan/terminus
+[1]: http://terminus.jcoglan.com/
 [2]: http://github.com/jnicklas/capybara
-[3]: http://canopy.jcoglan.com/
-[4]: http://cukes.info/
 
 
 ## Building the library
+
+The XPath parser is based on [Canopy][3] and the library is built using
+[Jake][4]. These commands should get you a source and minified version plus a
+source map in the `build/` directory.
 
     git clone git://github.com/jcoglan/pathology.git
     cd pathology/
@@ -27,6 +28,9 @@ remain so. The current aim is to implement just enough to run typical
     ./node_modules/.bin/canopy source/pathology/xpath.peg
     gem install jake
     jake
+
+[3]: http://canopy.jcoglan.com/
+[4]: http://github.com/jcoglan/jake
 
 
 ## License
