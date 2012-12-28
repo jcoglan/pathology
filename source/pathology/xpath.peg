@@ -1,53 +1,53 @@
 grammar Pathology.XPath
-  
+
   union_expression    <- head:location_path rest:(space "|" space location_path)* <Union>
-  
+
   location_path       <- head:location_step rest:location_step* <LocationPath>
-  
+
   location_step       <- "/"? selector:(axis test:node_test? / axis:axis? test:node_test)
                          predicates:node_predicate*
                          <LocationStep>
-  
+
   axis                <- axis_name:[a-z\-]+ "::" / axis_shorthand
-  
+
   axis_shorthand      <- "@" / ".." / "." / "/"
-  
+
   node_test           <- (node_condition / node_name / "*") subscript:subscript? <NodeTest>
-  
+
   node_condition      <- condition_name:[a-z\-]+ "()"
-  
+
   node_name           <- [A-Za-z0-9\-]+
-  
+
   subscript           <- "[" space integer space "]"
-  
+
   node_predicate      <- "[" expression "]" subscript:subscript?
-  
+
   expression          <- or_expression / and_expression / comparison / atom
-  
+
   or_expression       <- left:and_expression "or" right:or_expression <Or>
                        / and_expression
-  
+
   and_expression      <- left:comparison "and" right:and_expression <And>
                        / comparison
-  
+
   comparison          <- left:atom comparator right:comparison <Comparison>
                        / atom
-  
+
   comparator          <- "!=" / "="
-  
+
   atom                <- space expression:("(" in_parens:expression ")" / value) space <Atom>
-  
+
   value               <- function_call / string / union_expression
-  
+
   function_call       <- function_name "(" function_args ")" <FunctionCall>
-  
+
   function_name       <- [a-z\-]+
-  
+
   function_args       <- (first:expression rest:("," expression)*)?
-  
+
   integer             <- [1-9] [0-9]* <Integer>
-  
+
   string              <- ("'" ("\\" . / [^'])* "'" / "\"" ("\\" . / [^"])* "\"") <String>
-  
+
   space               <- " "*
 

@@ -7,7 +7,7 @@ Pathology.XPathParser.Comparison = {
         viable     = false,
         array      = (right instanceof Array),
         node;
-    
+
     if (left._nodes) {
       for (var i = 0, n = left._nodes.length; i < n; i++) {
         node = left._nodes[i];
@@ -18,7 +18,7 @@ Pathology.XPathParser.Comparison = {
         }
       }
       return viable;
-    
+
     } else {
       switch (comparator) {
         case '=':   return array ? Pathology.indexOf(right, left.nodeValue) >= 0 : left == right;

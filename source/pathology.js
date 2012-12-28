@@ -5,20 +5,20 @@ var Pathology = {
     expression.evaluate(context, context, resultType, result);
     return result;
   },
-  
+
   atomize: function(expression, context, root) {
     var result = expression.evaluate(context, root);
     if (result && result.atomize) result = result.atomize();
     return result;
   },
-  
+
   array: function(list) {
     if (!list) return [];
     var array = [], i = list.length;
     while (i--) array[i] = list[i];
     return array;
   },
-  
+
   indexOf: function(list, item) {
     if (list.indexOf) return list.indexOf(item);
     for (var i = 0, n = list.length; i < n; i++) {

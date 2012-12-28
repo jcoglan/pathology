@@ -33,17 +33,17 @@ Pathology.XPathResult.prototype.atomize = function() {
 Pathology.XPathResult.prototype.makeString = function() {
   var first = this._nodes[0];
   if (!first) return '';
-  
+
   switch (first.nodeType) {
     case XPathResult.STRING_TYPE:
       return this.atomize();
-    
+
     case XPathResult.BOOLEAN_TYPE:
       var parts = [];
       for (var i = 0, n = this._nodes.length; i < n; i++)
         parts.push(this._nodes[i].nodeValue);
       return parts.join('');
-    
+
     default:
       var result = document.evaluate('//text()', first, null, XPathResult.ANY_TYPE, null);
       return result.makeString();
