@@ -7,7 +7,7 @@
     }
     return destination;
   };
-
+  
   var find = function (root, objectName) {
     var parts = objectName.split('.'),
         part;
@@ -19,7 +19,7 @@
     }
     return root;
   };
-
+  
   var formatError = function (error) {
     var lines  = error.input.split(/\n/g),
         lineNo = 0,
@@ -41,9 +41,9 @@
     }
     return message + '^';
   };
-
+  
   var Grammar = {
-    __consume__union_expression: function(input) {
+    __consume__union_expression: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["union_expression"] = this._nodeCache["union_expression"] || {};
       var cached = this._nodeCache["union_expression"][index0];
@@ -182,7 +182,7 @@
       }
       return this._nodeCache["union_expression"][index0] = address0;
     },
-    __consume__location_path: function(input) {
+    __consume__location_path: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["location_path"] = this._nodeCache["location_path"] || {};
       var cached = this._nodeCache["location_path"][index0];
@@ -245,7 +245,7 @@
       }
       return this._nodeCache["location_path"][index0] = address0;
     },
-    __consume__location_step: function(input) {
+    __consume__location_step: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["location_step"] = this._nodeCache["location_step"] || {};
       var cached = this._nodeCache["location_step"][index0];
@@ -452,7 +452,7 @@
       }
       return this._nodeCache["location_step"][index0] = address0;
     },
-    __consume__axis: function(input) {
+    __consume__axis: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["axis"] = this._nodeCache["axis"] || {};
       var cached = this._nodeCache["axis"][index0];
@@ -574,7 +574,7 @@
       }
       return this._nodeCache["axis"][index0] = address0;
     },
-    __consume__axis_shorthand: function(input) {
+    __consume__axis_shorthand: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["axis_shorthand"] = this._nodeCache["axis_shorthand"] || {};
       var cached = this._nodeCache["axis_shorthand"][index0];
@@ -705,7 +705,7 @@
       }
       return this._nodeCache["axis_shorthand"][index0] = address0;
     },
-    __consume__node_test: function(input) {
+    __consume__node_test: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["node_test"] = this._nodeCache["node_test"] || {};
       var cached = this._nodeCache["node_test"][index0];
@@ -799,7 +799,7 @@
       }
       return this._nodeCache["node_test"][index0] = address0;
     },
-    __consume__node_condition: function(input) {
+    __consume__node_condition: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["node_condition"] = this._nodeCache["node_condition"] || {};
       var cached = this._nodeCache["node_condition"][index0];
@@ -911,7 +911,7 @@
       }
       return this._nodeCache["node_condition"][index0] = address0;
     },
-    __consume__node_name: function(input) {
+    __consume__node_name: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["node_name"] = this._nodeCache["node_name"] || {};
       var cached = this._nodeCache["node_name"][index0];
@@ -967,7 +967,7 @@
       }
       return this._nodeCache["node_name"][index0] = address0;
     },
-    __consume__subscript: function(input) {
+    __consume__subscript: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["subscript"] = this._nodeCache["subscript"] || {};
       var cached = this._nodeCache["subscript"][index0];
@@ -1088,7 +1088,7 @@
       }
       return this._nodeCache["subscript"][index0] = address0;
     },
-    __consume__node_predicate: function(input) {
+    __consume__node_predicate: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["node_predicate"] = this._nodeCache["node_predicate"] || {};
       var cached = this._nodeCache["node_predicate"][index0];
@@ -1211,7 +1211,7 @@
       }
       return this._nodeCache["node_predicate"][index0] = address0;
     },
-    __consume__expression: function(input) {
+    __consume__expression: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["expression"] = this._nodeCache["expression"] || {};
       var cached = this._nodeCache["expression"][index0];
@@ -1242,7 +1242,7 @@
       }
       return this._nodeCache["expression"][index0] = address0;
     },
-    __consume__or_expression: function(input) {
+    __consume__or_expression: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["or_expression"] = this._nodeCache["or_expression"] || {};
       var cached = this._nodeCache["or_expression"][index0];
@@ -1329,7 +1329,7 @@
       }
       return this._nodeCache["or_expression"][index0] = address0;
     },
-    __consume__and_expression: function(input) {
+    __consume__and_expression: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["and_expression"] = this._nodeCache["and_expression"] || {};
       var cached = this._nodeCache["and_expression"][index0];
@@ -1416,7 +1416,7 @@
       }
       return this._nodeCache["and_expression"][index0] = address0;
     },
-    __consume__comparison: function(input) {
+    __consume__comparison: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["comparison"] = this._nodeCache["comparison"] || {};
       var cached = this._nodeCache["comparison"][index0];
@@ -1479,7 +1479,7 @@
       }
       return this._nodeCache["comparison"][index0] = address0;
     },
-    __consume__comparator: function(input) {
+    __consume__comparator: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["comparator"] = this._nodeCache["comparator"] || {};
       var cached = this._nodeCache["comparator"][index0];
@@ -1550,7 +1550,7 @@
       }
       return this._nodeCache["comparator"][index0] = address0;
     },
-    __consume__atom: function(input) {
+    __consume__atom: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["atom"] = this._nodeCache["atom"] || {};
       var cached = this._nodeCache["atom"][index0];
@@ -1703,7 +1703,7 @@
       }
       return this._nodeCache["atom"][index0] = address0;
     },
-    __consume__value: function(input) {
+    __consume__value: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["value"] = this._nodeCache["value"] || {};
       var cached = this._nodeCache["value"][index0];
@@ -1729,7 +1729,7 @@
       }
       return this._nodeCache["value"][index0] = address0;
     },
-    __consume__function_call: function(input) {
+    __consume__function_call: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["function_call"] = this._nodeCache["function_call"] || {};
       var cached = this._nodeCache["function_call"][index0];
@@ -1840,7 +1840,7 @@
       }
       return this._nodeCache["function_call"][index0] = address0;
     },
-    __consume__function_name: function(input) {
+    __consume__function_name: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["function_name"] = this._nodeCache["function_name"] || {};
       var cached = this._nodeCache["function_name"][index0];
@@ -1896,7 +1896,7 @@
       }
       return this._nodeCache["function_name"][index0] = address0;
     },
-    __consume__function_args: function(input) {
+    __consume__function_args: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["function_args"] = this._nodeCache["function_args"] || {};
       var cached = this._nodeCache["function_args"][index0];
@@ -2027,7 +2027,7 @@
       }
       return this._nodeCache["function_args"][index0] = address0;
     },
-    __consume__integer: function(input) {
+    __consume__integer: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["integer"] = this._nodeCache["integer"] || {};
       var cached = this._nodeCache["integer"][index0];
@@ -2138,7 +2138,7 @@
       }
       return this._nodeCache["integer"][index0] = address0;
     },
-    __consume__string: function(input) {
+    __consume__string: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["string"] = this._nodeCache["string"] || {};
       var cached = this._nodeCache["string"][index0];
@@ -2617,7 +2617,7 @@
       }
       return this._nodeCache["string"][index0] = address0;
     },
-    __consume__space: function(input) {
+    __consume__space: function() {
       var address0 = null, index0 = this._offset;
       this._nodeCache["space"] = this._nodeCache["space"] || {};
       var cached = this._nodeCache["space"][index0];
@@ -2674,13 +2674,13 @@
       return this._nodeCache["space"][index0] = address0;
     }
   };
-
+  
   var Parser = function(input) {
     this._input = input;
     this._offset = 0;
     this._nodeCache = {};
   };
-
+  
   Parser.prototype.parse = function() {
     var result = this.__consume__union_expression();
     if (result && this._offset === this._input.length) {
@@ -2693,14 +2693,14 @@
     var error = new Error(message);
     throw error;
   };
-
+  
   Parser.parse = function(input) {
     var parser = new Parser(input);
     return parser.parse();
   };
-
+  
   extend(Parser.prototype, Grammar);
-
+  
   var SyntaxNode = function(textValue, offset, elements, properties) {
     this.textValue = textValue;
     this.offset    = offset;
@@ -2708,20 +2708,20 @@
     if (!properties) return;
     for (var key in properties) this[key] = properties[key];
   };
-
+  
   SyntaxNode.prototype.forEach = function(block, context) {
     for (var i = 0, n = this.elements.length; i < n; i++) {
       block.call(context, this.elements[i], i);
     }
   };
-
+  
   Parser.SyntaxNode = SyntaxNode;
-
+  
   if (typeof require === "function" && typeof exports === "object") {
     exports.Grammar = Grammar;
     exports.Parser  = Parser;
     exports.parse   = Parser.parse;
-
+    
     if (typeof Pathology !== "undefined") {
       Pathology.XPath = Grammar;
       Pathology.XPathParser = Parser;
